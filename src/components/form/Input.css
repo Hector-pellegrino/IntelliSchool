@@ -1,0 +1,43 @@
+div {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+input {
+  width: 420px;
+  font-size: 18px;
+  background: transparent;
+  outline: none;
+  border: none;
+  border-bottom: 1px solid #00487C;
+  padding: 5px;
+}
+
+label {
+  text-transform: capitalize;
+  color: #00487C;
+  font-size: 48px;
+  font-style: italic;
+  display: block;
+}
+
+@media (max-width: 768px) {
+  input {
+    width: 360px;
+    font-size: 16px;
+  }
+  label {
+    font-size: 36px;
+  }
+}
+
+@media (max-width: 420px) {
+  input {
+    width: 240px;
+    font-size: 12px;
+  }
+  label {
+    font-size: 24px;
+  }
+}
