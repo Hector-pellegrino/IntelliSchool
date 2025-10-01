@@ -1,10 +1,10 @@
-div {
+.input {
   display: flex;
   flex-direction: column;
   gap: 5px;
 }
 
-input {
+.input input {
   width: 420px;
   font-size: 18px;
   background: transparent;
@@ -14,7 +14,7 @@ input {
   padding: 5px;
 }
 
-label {
+.input label {
   text-transform: capitalize;
   color: #00487C;
   font-size: 48px;
@@ -23,21 +23,21 @@ label {
 }
 
 @media (max-width: 768px) {
-  input {
+  .input input {
     width: 360px;
     font-size: 16px;
   }
-  label {
+  .input label {
     font-size: 36px;
   }
 }
 
 @media (max-width: 420px) {
-  input {
+  .input input {
     width: 240px;
     font-size: 12px;
   }
-  label {
+  .input label {
     font-size: 24px;
   }
 }

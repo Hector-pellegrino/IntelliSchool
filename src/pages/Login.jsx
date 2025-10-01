@@ -2,50 +2,57 @@ import Input from '../components/form/Input'
 import './Login.css'
 import { useNavigate } from 'react-router-dom'
 import { UserContext } from '../context/UserContext'
-import { useContext } from 'react'
-import { useState } from 'react'
+import { useState, useContext, useEffect } from 'react'
 
 export default function Login() {
-
-  const navigate = useNavigate() 
-  const { user, setUser } = useContext(UserContext)
+  const navigate = useNavigate()
+  const { users, setCurrentUser, currentUser } = useContext(UserContext)
   const [login, setLogin] = useState({})
 
   function handleChange(evento) {
-    setLogin({...login, [evento.target.name]: evento.target.value})
+    setLogin({ ...login, [evento.target.name]: evento.target.value })
   }
 
   function buttonSubmit(evento) {
     evento.preventDefault()
-
-    if(user.email === login.email && user.senha === login.senha) {
-      setUser({...user, isLoggedIn: true})
+    const foundUser = users.find((user) => user.email === login.email && user.senha === login.senha)
+    if (foundUser) {
+      const loggedUser = { ...foundUser, isLoggedIn: true }
+      setCurrentUser(loggedUser)
+      sessionStorage.setItem('user', JSON.stringify(loggedUser))
+      navigate('/home')
+    } else {
+      alert('Email ou senha inválidos')
     }
-    navigate('/home',)
   }
 
   return (
     <section id='body'>
       <h1>
-        <span>Faça login, <br /></span>o conhecimento <br /> te espera
+        <span>
+          Faça login, <br />
+        </span>
+        o conhecimento <br /> te espera
       </h1>
       <section>
-        <form onSubmit={buttonSubmit}>
-            <Input
-            type= 'email'
+        <form className='form-login' onSubmit={buttonSubmit}>
+          <Input
+            type='email'
             id='email'
             name='email'
             placeholder='Insira o seu e-mail '
+            label='email:'
             handleOnChange={handleChange}
-            />
-            <Input
-            type= 'password'
+          />
+          <Input
+            type='password'
             id='senha'
             name='senha'
             placeholder='Insira a sua senha '
+            label='senha:'
             handleOnChange={handleChange}
-            />
-          <button>entrar</button>
+          />
+          <button id='buttonLogin'>Entrar</button>
         </form>
       </section>
     </section>

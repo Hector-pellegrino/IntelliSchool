@@ -4,9 +4,12 @@ import { useContext } from 'react'
 import { UserContext } from './context/UserContext'
 
 export default function ProtectedRoute({ children }) {
-  const { user } = useContext(UserContext)
+  const { currentUser } = useContext(UserContext)
 
-  if (!user.isLoggedIn) {
+  if(currentUser === null) {
+    return <Navigate to='/' replace/>
+  }
+  if (!currentUser.isLoggedIn) {
     return <Navigate to="/" replace />
   }
 

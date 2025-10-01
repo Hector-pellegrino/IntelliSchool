@@ -1,0 +1,21 @@
+.liSideBar {
+  width: 100%;
+}
+
+.liSideBar a {
+  display: flex;
+  align-items: center;
+  padding: 12px 20px;
+  color: white; /* letras brancas */
+  text-decoration: none;
+  font-size: 20px;
+  transition: background 0.2s;
+}
+
+.liSideBar a:hover {
+  background: #1a237e; /* azul mais claro */
+}
+
+.liSideBar span {
+  margin-right: 10px;
+}
