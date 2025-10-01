@@ -1,0 +1,18 @@
+.changeAtividades {
+  all: unset;
+  color: rgb(61, 61, 61);
+}
+
+.changeAtividades:hover, .changeAtividades:focus {
+  cursor: pointer;
+  text-decoration: underline;
+  background-color: white;
+  color: #0022ff;
+  transition: all 0.3s;
+}
+
+.ativa {
+  text-decoration: underline;
+  background-color: white;
+  color: #0022ff;
+}

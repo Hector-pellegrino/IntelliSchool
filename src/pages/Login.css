@@ -17,10 +17,11 @@ h1 {
   color: white;
   text-transform: uppercase;
 }
-span {
+
+h1 span {
   color: #00CF26;
 }
-form {
+.form-login {
   background-color: #E9E9E9;
   padding: 80px;
   border-radius: 15px;
@@ -30,8 +31,7 @@ form {
   gap: 40px;
 }
 
-
-button {
+#buttonLogin {
   all: unset;
   text-transform: uppercase;
   color: #E9E9E9;
@@ -40,7 +40,7 @@ button {
   text-align: center;
   border-radius: 30px;
 }
-button:hover {
+#buttonLogin:hover {
   cursor: pointer;
   background-color: #00CF26;
   transition: .3s;
@@ -55,12 +55,12 @@ button:hover {
     font-size: 48px;
   }
 
-  form {
+  .form-login {
     padding: 60px;
     gap: 30px;
   }
 
-  button {
+  #buttonLogin {
     padding: 20px 40px;
   }
 }
@@ -69,12 +69,12 @@ button:hover {
   h1 {
     font-size: 18px;
   }
-  form {
+  .form-login {
     padding: 30px;
     gap: 15px;
   }
 
-  button {
+  #buttonLogin {
     padding: 10px 20px;
   }
 }

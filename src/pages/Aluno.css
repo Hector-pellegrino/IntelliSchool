@@ -1,0 +1,16 @@
+.app {
+  display: flex;
+  min-height: 100dvh;
+  width: 100%;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.content {
+  width: 80vw;
+  background-color: #f4f6f9;
+  background-repeat: repeat;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
