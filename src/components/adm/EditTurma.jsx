@@ -1,6 +1,8 @@
 import { useState } from 'react'
 import Input from '../form/Input'
-import { FaTrashAlt, FaArrowRight, FaArrowDown } from 'react-icons/fa'
+import { FaTrashAlt, FaArrowRight, FaArrowDown} from 'react-icons/fa'
+import { RxAvatar } from "react-icons/rx";
+import { IoBookOutline, IoReturnUpBackOutline  } from "react-icons/io5";
 import './EditTurma.css'
 
 export default function EditTurma() {
@@ -48,10 +50,11 @@ export default function EditTurma() {
   }
   return (
     <section className='section-edit-turma'>
+      <button className='button-voltar'><IoReturnUpBackOutline /></button>
       <form className='form-edit-turma'>
         <div className='form-div-label-input'>
           <label className='label-edit-turma' htmlFor={turma.nome}>
-            Nome:
+            Turma:
           </label>
           <input
             className='input-edit-turma'
@@ -62,7 +65,7 @@ export default function EditTurma() {
             name={turma.nome}
             defaultValue={turma.nome}
           />
-        </div>
+        </div>  
 
         <div className='form-div-lista-alunos'>
           <h2 className='title-alunos-materias' onClick={showAlunos}>
@@ -71,7 +74,10 @@ export default function EditTurma() {
           {viewAlunos &&
             turma.alunos.sort().map((aluno) => (
               <div className='div-aluno' key={`div-${aluno}`}>
-                <p key={`aluno-${aluno}`}>{aluno}</p>{' '}
+                <div>
+                  <RxAvatar/>
+                  <p key={`aluno-${aluno}`}>{aluno}</p>{' '}
+                </div>
                 <FaTrashAlt onClick={() => removeAluno(aluno)} />
               </div>
             ))}
@@ -85,23 +91,26 @@ export default function EditTurma() {
             <>
               {turma.materias.sort().map((materia) => (
                 <div className={`div-materia`} key={`div-${materia}`}>
-                  <p key={`materia-${materia}`}>{materia}</p>{' '}
+                  <div>
+                    <IoBookOutline />
+                    <p key={`materia-${materia}`}>{materia}</p>{' '}
+                  </div>
                   <FaTrashAlt onClick={() => removeMateria(materia)} />{' '}
                 </div>
               ))}
               {view ? (
                 <div className='addMateria'>
                   <input
-                    type='text'
+                    type='text' className='input-materias'
                     placeholder='Digite o nome da materia'
                     onChange={(e) => setNovaMateria(e.target.value.trim())}
                   />
                   <div className='conteiner-buttons-materias'>
-                    <button className='buttons-materias' id='button-salvar' onClick={addMateria}>
-                      Salvar
-                    </button>
                     <button className='buttons-materias' id='button-cancelar' onClick={openView}>
                       Cancelar
+                    </button>
+                    <button className='buttons-materias' id='button-salvar' onClick={addMateria}>
+                      Salvar
                     </button>
                   </div>
                 </div>
@@ -113,6 +122,7 @@ export default function EditTurma() {
             </>
           )}
         </div>
+        <button className='button-enviar'>Salvar</button>
       </form>
     </section>
   )
