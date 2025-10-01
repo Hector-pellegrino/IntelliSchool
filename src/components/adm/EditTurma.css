@@ -4,17 +4,33 @@
   display: flex;
   align-items: center;
   justify-content: center;
-
+  
 }
+
+.button-voltar{
+  all: unset;
+  position: absolute;
+  left: 15vw;
+  top: 25pgitx;
+  cursor: pointer;
+}
+
+.button-voltar svg{
+  width: 40px;
+  height: 40px;
+  color: #1a237e;
+}
+
 .form-edit-turma {
   width: 60%;
-  background-color: #e9e9e9;
-  padding: 40px;
+  padding-block: 40px;
   border-radius: 15px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 40px;
+  gap: 45px;
+  margin-block: 25px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
 .form-div-label-input {
@@ -23,6 +39,11 @@
   width: 60%;
   font-size: 24px;
   padding: 20px;
+  gap: 10px;
+}
+
+.label-edit-turma{
+  font-weight: bold;
 }
 
 .input-edit-turma {
@@ -30,7 +51,7 @@
   outline: none;
   border: none;
   background: transparent;
-  border-bottom: 1px solid ;
+  border-bottom: 1px solid;
   font-size: 24px;
 }
 
@@ -49,11 +70,22 @@
   align-items: center;
 }
 
+.div-aluno div, .div-materia div{
+  display: flex;
+  align-items: center;
+  gap: 25px;
+  padding-inline: 5px;
+}
+
 .div-aluno:hover, .div-materia:hover {
   cursor: pointer;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  border-radius: 15px;
 }
 
+.div-aluno > svg:hover, .div-materia > svg:hover{
+  color: brown;
+}
 
 .title-alunos-materias {
   padding: 20px;
@@ -62,12 +94,12 @@
   align-items: center;
   justify-content: space-between;
   text-align: center;
-  transition: ease-in-out .4s;
+  transition: ease .3s;
 }
 
 .title-alunos-materias:hover {
   cursor: pointer;
-  color: #e9e9e9;
+  color: #e6e6e6;
   background-color: #1a237e;
 }
 
@@ -75,27 +107,42 @@
   color: rgba(0, 0, 0, 0.5);
 }
 
+.title-alunos-materias:hover svg{
+  color: rgba(255, 255, 255, 0.5);
+}
+
 .buttons-materias {
   margin-top: 10px;
-  padding: 15px 30px;
+  padding: 10px 22px;
   background-color: #1a237e;
   color: #e9e9e9;
-  border: 1px solid #1a237e;
+  border: 3px solid #1a237e;
   border-radius: 10px;
-  font-size: 18px;
+  font-size: 14px;
   text-transform: capitalize;
   transition: ease-in-out .3s;
+  font-weight: bold;
 }
 
 .addMateria {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 15px;
+}
+
+.input-materias{
+  all: unset;
+  background: transparent;
+  border-bottom: solid 1px;
+  font-size: 20px;
+  padding-block: 15px;
+  padding-inline: 5px;
 }
 
 .conteiner-buttons-materias {
   display: flex;
-  justify-content: space-around;
+  justify-content: flex-end;
+  gap: 15px;
 }
 
 .buttons-materias:hover{
@@ -105,20 +152,41 @@
 }
 
 #button-cancelar {
-  background-color: red;
-  border-color: red;
+  background-color: transparent;
+  color: #1a237e;
+  border-color: transparent;
 }
 
 #button-cancelar:hover {
   background-color: #e9e9e9;
-  color: red;
+  color: #1a237e;
+  text-decoration: underline;
 }
+
 #button-salvar {
-  background-color: green;
-  border-color: green;
+  background-color: #1a237e;
+  border-color: #1a237e;
 }
 
 #button-salvar:hover {
-  background-color: #e9e9e9;
-  color: green;
+  background-color: transparent;
+  color: #1a237e;
+}
+
+.button-enviar{
+  all: unset;
+  cursor: pointer;
+  font-size: 20px;
+  font-weight: bold;
+  padding: 10px 22px;
+  background-color: #1a237e;
+  color: #e9e9e9;
+  border: 3px solid #1a237e;
+  border-radius: 10px;
+}
+
+.button-enviar:hover{
+  cursor: pointer;
+  background-color: transparent;
+  color: #1a237e;
 }
