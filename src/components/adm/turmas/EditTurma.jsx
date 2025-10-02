@@ -1,18 +1,19 @@
 import { useState } from 'react'
-import Input from '../form/Input'
 import { FaTrashAlt, FaArrowRight, FaArrowDown} from 'react-icons/fa'
 import { RxAvatar } from "react-icons/rx";
 import { IoBookOutline, IoReturnUpBackOutline  } from "react-icons/io5";
+import { useParams, useNavigate } from 'react-router-dom';
 import './EditTurma.css'
 
-export default function EditTurma() {
+export default function EditTurma({ salvarTurma, turmas }) {
+  const navigate = useNavigate()
   const [view, setView] = useState(false)
   const [viewAlunos, setViewAlunos] = useState(false)
   const [viewMaterias, setViewMaterias] = useState(false)
   const [novaMateria, setNovaMateria] = useState('')
   const [turma, setTurma] = useState(JSON.parse(sessionStorage.getItem('turmaSelecionada')))
-  function handleChange(evento) {
-    setTurma({ ...turma, [evento.target.name]: evento.target.value })
+  function handleChangeNome(evento) {
+    setTurma({ ...turma, nome: evento.target.value })
   }
 
   function removeAluno(aluno) {
@@ -48,9 +49,18 @@ export default function EditTurma() {
   function showMaterias() {
     setViewMaterias(!viewMaterias)
   }
+  function navigateTurmas() {
+    navigate('/admin/turmas')
+  }
+
+  function handleSave(e) {
+    e.preventDefault();
+    salvarTurma(turma.id, turma);
+    navigate('/admin/turmas')
+  }
   return (
     <section className='section-edit-turma'>
-      <button className='button-voltar'><IoReturnUpBackOutline /></button>
+      <button className='button-voltar'onClick={navigateTurmas} ><IoReturnUpBackOutline /></button>
       <form className='form-edit-turma'>
         <div className='form-div-label-input'>
           <label className='label-edit-turma' htmlFor={turma.nome}>
@@ -61,7 +71,7 @@ export default function EditTurma() {
             type='text'
             placeholder='Nome da turma'
             id={turma.id}
-            onChange={handleChange}
+            onChange={handleChangeNome}
             name={turma.nome}
             defaultValue={turma.nome}
           />
@@ -122,7 +132,7 @@ export default function EditTurma() {
             </>
           )}
         </div>
-        <button className='button-enviar'>Salvar</button>
+        <button className='button-enviar' onClick={handleSave}>Salvar</button>
       </form>
     </section>
   )

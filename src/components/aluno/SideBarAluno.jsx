@@ -6,25 +6,25 @@ function Sidebar() {
   const links = [
     {
       id: 1,
-      url: '/',
-      text: 'Relatórios',
-      icon: <FaFileAlt />,
-    },
-    {
-      id: 2,
-      url: '/',
-      text: 'Matérias',
-      icon: <FaBook />,
-    },
-    {
-      id: 3,
       url: '/aluno/atividades',
       text: 'Atividades',
       icon: <FaTasks />,
     },
     {
+      id: 2,
+      url: '/aluno',
+      text: 'Relatórios',
+      icon: <FaFileAlt />,
+    },
+    {
+      id: 3,
+      url: '/aluno',
+      text: 'Matérias',
+      icon: <FaBook />,
+    },
+    {
       id: 4,
-      url: '/',
+      url: '/aluno',
       text: 'Desempenho',
       icon: <FaChartBar />,
     },
