@@ -1,7 +1,7 @@
 import '../SideBar/SideBar.css'
-import { TiGroup } from "react-icons/ti";
-import { GrUserManager } from "react-icons/gr";
-import { FaBook, FaUser} from 'react-icons/fa'
+import { TiGroup } from 'react-icons/ti'
+import { GrUserManager } from 'react-icons/gr'
+import { FaBook, FaUser } from 'react-icons/fa'
 import LiSideBar from '../SideBar/LiSideBar'
 
 function Sidebar() {
@@ -14,7 +14,7 @@ function Sidebar() {
     },
     {
       id: 2,
-      url: '/admin',
+      url: '/admin/alunos',
       text: 'Alunos',
       icon: <TiGroup />,
     },
@@ -22,7 +22,7 @@ function Sidebar() {
       id: 3,
       url: '/admin',
       text: 'Professores',
-      icon: <GrUserManager  />,
+      icon: <GrUserManager />,
     },
   ]
   return (

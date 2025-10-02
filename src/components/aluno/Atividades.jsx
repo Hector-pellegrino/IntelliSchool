@@ -12,38 +12,36 @@ function Atividades() {
       status: 'Pendente',
       aberto: false,
       resposta: '',
+      arquivo:'',
     },
     {
       id: 2,
       titulo: 'Português',
       descricao: "O que é uma onimatopeia?'.",
       status: 'Pendente',
-      aberto: false,
       resposta: '',
+      arquivo:'',
     },
     {
       id: 3,
       titulo: 'Ciências',
       descricao: 'O que é fotossíntese?.',
       status: 'Pendente',
-      aberto: false,
       resposta: '',
+      arquivo:'',
     },
   ])
   const [viewAtividades, setViewAtividades] = useState([...atividades])
-  
-  // Alternar abrir/fechar atividade
-  const toggleAtividade = (id) => {
-    setAtividades(atividades.map((atv) => (atv.id === id ? { ...atv, aberto: !atv.aberto } : atv)))
-    setViewAtividades(
-      viewAtividades.map((atv) => (atv.id === id ? { ...atv, aberto: !atv.aberto } : atv))
-    )
-  }
 
   // Atualizar resposta escrita
   const atualizarResposta = (id, valor) => {
     setAtividades(atividades.map((atv) => (atv.id === id ? { ...atv, resposta: valor } : atv)))
     setViewAtividades(viewAtividades.map((atv) => (atv.id === id ? { ...atv, resposta: valor } : atv)))
+    console.log(viewAtividades)
+  }
+  const atualizarArquivo = (id, arquivo) => {
+    setAtividades(atividades.map((atv) => (atv.id === id ? { ...atv, arquivo: arquivo } : atv)))
+    setViewAtividades(viewAtividades.map((atv) => (atv.id === id ? { ...atv, arquivo: arquivo } : atv)))
   }
 
   // Entregar atividade
@@ -98,7 +96,7 @@ function Atividades() {
       </div>
 
       <ul className='atividades-lista'>
-        <LiAtividades atividades={viewAtividades} toogleAtv={toggleAtividade} atualizarResposta={atualizarResposta} entregarAtividade={entregarAtividade} validarEntrega={validarEntrega}/>
+        <LiAtividades atividades={viewAtividades} atualizarResposta={atualizarResposta} atualizarArquivo={atualizarArquivo} entregarAtividade={entregarAtividade} validarEntrega={validarEntrega}/>
       </ul>
     </div>
   )

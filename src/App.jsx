@@ -9,8 +9,8 @@ import ProtectRoute from './ProtectRoute'
 import Atividades from './components/aluno/Atividades'
 import Aluno from './pages/Aluno'
 import Admin from './pages/Admin'
-import Turmas from './components/adm/Turmas'
-import EditTurma from './components/adm/EditTurma'
+import Turmas from './components/adm//turmas/Turmas'
+import Alunos from './components/adm/alunos/Alunos'
 
 export default function App() {
   return (
@@ -46,8 +46,8 @@ export default function App() {
             }
           >
             <Route index element={<Welcome />} />
-            <Route path='turmas' element={<Turmas />}></Route>
-            <Route path='/admin/turmas/:nome' element={<EditTurma/>} />
+            <Route path='turmas/*' element={<Turmas />}></Route>
+            <Route path='alunos/*' element={<Alunos />}></Route>
           </Route>
         </Routes>
       </Router>
