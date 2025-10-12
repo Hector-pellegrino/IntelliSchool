@@ -1,0 +1,13 @@
+.grid-search input {
+  width: 100%;
+  font-size: 18px;
+  background: transparent;
+  outline: none;
+  border: none;
+  padding: 5px;
+}
+
+.grid-search input:focus {
+  transition: all 0.7;
+  border-bottom: 1px solid #00487C;
+}

@@ -1,28 +1,34 @@
 import Input from '../components/form/Input'
+import Loading from '../components/Loading'
 import './Login.css'
 import { useNavigate } from 'react-router-dom'
 import { UserContext } from '../context/UserContext'
-import { useState, useContext, useEffect } from 'react'
+import { useState, useContext } from 'react'
+import { apiPost } from '../api'
 
 export default function Login() {
   const navigate = useNavigate()
-  const { users, setCurrentUser, currentUser } = useContext(UserContext)
+  const { setCurrentUser, setCurrentMessage } = useContext(UserContext)
   const [login, setLogin] = useState({})
+  const [isLoading, setIsLoading] = useState(false)
 
   function handleChange(evento) {
     setLogin({ ...login, [evento.target.name]: evento.target.value })
   }
 
-  function buttonSubmit(evento) {
+  async function buttonSubmit(evento) {
     evento.preventDefault()
-    const foundUser = users.find((user) => user.email === login.email && user.senha === login.senha)
-    if (foundUser) {
-      const loggedUser = { ...foundUser, isLoggedIn: true }
-      setCurrentUser(loggedUser)
-      sessionStorage.setItem('user', JSON.stringify(loggedUser))
+    setIsLoading(true)
+    const data = await apiPost('/api/auth/login', login)
+    if (data.message === 'Login realizado com sucesso') {
+      setCurrentUser(data.user)
+      setCurrentMessage(data.message)
+      sessionStorage.setItem('user', JSON.stringify(data.user))
+      sessionStorage.setItem('message', JSON.stringify(data.message)) 
       navigate('/home')
     } else {
-      alert('Email ou senha inválidos')
+      setIsLoading(false)
+      alert(`${data.detail}`)
     }
   }
 
@@ -52,7 +58,8 @@ export default function Login() {
             label='senha:'
             handleOnChange={handleChange}
           />
-          <button id='buttonLogin'>Entrar</button>
+          {isLoading ? <Loading/> : <button id='buttonLogin'>Entrar</button>}
+          
         </form>
       </section>
     </section>

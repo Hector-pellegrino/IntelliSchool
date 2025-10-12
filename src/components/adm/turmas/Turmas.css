@@ -5,6 +5,7 @@
   display: flex;
   flex-direction: column;
   gap: 30px;
+  position: relative;
 }
 
 .grid-turmas {
@@ -17,21 +18,29 @@
   align-items: center;
 }
 
-.grid-search input {
-  width: 100%;
-  font-size: 18px;
-  background: transparent;
-  outline: none;
-  border: none;
-  padding: 5px;
-}
-
-.grid-search input:focus {
-  transition: all 0.7;
-  border-bottom: 1px solid #00487C;
-}
-
 .grid-search svg {
   font-size: 24px;
-  color: rgba(0, 0, 0, .5);
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.adicionarTurma {
+  all: unset;
+  position: fixed;
+  right: 100px;
+  bottom: 15dvh;
+  text-align: center;
+
+}
+
+.adicionarTurma svg {
+  cursor: pointer;
+  font-size: 70px;
+  color: #1a237e;
+  transition: all 0.3s ease;
+}
+
+
+.adicionarTurma svg:hover{
+  cursor: pointer;
+  color: #17803f;
 }
