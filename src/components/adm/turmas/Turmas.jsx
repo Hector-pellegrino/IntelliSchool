@@ -1,62 +1,61 @@
 import CardTurma from './CardTurma'
-import { FaSearch } from 'react-icons/fa'
-import { useState } from 'react'
-import { Routes, Route } from 'react-router-dom'
+import { IoAddCircle  } from 'react-icons/io5'
+import { useState, useEffect, use } from 'react'
+import { Routes, Route, useNavigate, useLocation } from 'react-router-dom'
 import EditTurma from './EditTurma'
+import { apiGet } from '../../../api'
 
 import './Turmas.css'
+import Search from '../Search'
+import CreateTurma from './CreateTurma'
 export default function Turmas() {
-  const [turmas, setTurmas] = useState([
-    {
-      id: 1,
-      nome: '32B',
-      materias: ['Matemática', 'Português'],
-      alunos: ['Héctor', 'Gui', 'Leo', 'Eder', 'Cauan', 'Vitor'],
-      Professor: ['Vitor Roque', 'Flaco Lopez'],
-    },
-    {
-      id: 2,
-      nome: '22B',
-      materias: ['História', 'Geografia'],
-      alunos: ['Héctor', 'Gui', 'Leo', 'Eder', 'Cauan', 'Vitor'],
-      professores: ['Andreas Pereira', 'Felipe Anderson'],
-    },
-  ])
+  const location = useLocation()
+  const navigate = useNavigate()
+
+
+  const [turmas, setTurmas] = useState([])
+
+  useEffect(() => {
+    apiGet('/api/turmas')
+      .then((data) => setTurmas(data))
+      .catch((err) => console.log(err))
+  }, [location.pathname])
 
   const [searchTurma, setSearchTurma] = useState('')
+
   function handleChange(evento) {
     setSearchTurma(evento.target.value)
   }
 
-  const turmasFiltradas = turmas.filter(({ nome }) =>
-    nome.toLowerCase().includes(searchTurma.toLowerCase().trim())
+  const turmasFiltradas = turmas.filter(({ serie }) =>
+    serie.toLowerCase().includes(searchTurma.toLowerCase().trim())
   )
-
-  function salvarTurma(id, novaTurma) {
-    setTurmas((prevTurmas) =>
-      prevTurmas.map((turma) => (turma.id === id ? { ...turma, ...novaTurma } : turma))
-    )
-    console.log(turmas)
+  function handleUpdateTurma(turmaAtualizada) {
+    setTurmas((prev) => prev.map((t) => (t.id === turmaAtualizada.id ? turmaAtualizada : t)))
   }
+  function handleUpdateTurmas(novaTurma) {
+    setTurmas((prev) => [...prev, novaTurma])
+  }
+
   return (
     <Routes>
       <Route
         path='/'
         element={
           <section className='conteiner-search-grid'>
-            <div className='grid-search'>
-              <input
-                type={'text'}
-                name={'turma'}
-                placeholder={`Procurar turma`}
-                onChange={handleChange}
-              />
-              <FaSearch />
-            </div>
+            <Search
+              type={'text'}
+              name={'turma'}
+              placeholder={`Procurar turma`}
+              onChange={handleChange}
+            />
 
+            <button className='adicionarTurma' onClick={() => { navigate('/admin/turmas/createTurma') }} ><IoAddCircle/></button>
             <div className='grid-turmas'>
               {turmasFiltradas.length > 0 ? (
-                turmasFiltradas.map((turma) => <CardTurma key={turma.id} {...turma} search={setSearchTurma}/>)
+                turmasFiltradas.map((turma) => (
+                  <CardTurma key={turma.id} {...turma} search={setSearchTurma} />
+                ))
               ) : (
                 <p>Nenhuma turma encontrada</p>
               )}
@@ -64,7 +63,8 @@ export default function Turmas() {
           </section>
         }
       />
-      <Route path=':id' element={<EditTurma salvarTurma={salvarTurma} turmas={turmas} />} />
+      <Route path=':id' element={<EditTurma onUpdate={handleUpdateTurma} />} />
+      <Route path='createTurma' element={<CreateTurma onUpdate={handleUpdateTurmas} />} />
     </Routes>
   )
 }

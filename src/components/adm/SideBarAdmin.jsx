@@ -3,8 +3,11 @@ import { TiGroup } from 'react-icons/ti'
 import { GrUserManager } from 'react-icons/gr'
 import { FaBook, FaUser } from 'react-icons/fa'
 import LiSideBar from '../SideBar/LiSideBar'
+import { useContext } from 'react'
+import { UserContext } from '../../context/UserContext'
 
 function Sidebar() {
+  const { currentUser } = useContext(UserContext)
   const links = [
     {
       id: 1,
@@ -30,7 +33,7 @@ function Sidebar() {
       {/* Perfil */}
       <div className='profile'>
         <FaUser fontSize={'60px'} />
-        <h3>João da Silva</h3>
+        <h3>{currentUser.nome}</h3>
         <p>Admin</p>
       </div>
 

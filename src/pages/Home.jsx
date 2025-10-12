@@ -10,11 +10,11 @@ export default function Home() {
   useEffect(() => {
     if (!currentUser) return
 
-    if (currentUser.tipoUsuario === 'aluno') {
+    if (currentUser.tipo === 'aluno') {
       navigate('/aluno')
-    } else if (currentUser.tipoUsuario === 'professor') {
+    } else if (currentUser.tipo === 'professor') {
       navigate('/professor')
-    } else if (currentUser.tipoUsuario === 'admin') {
+    } else if (currentUser.tipo === 'admin') {
       navigate('/admin')
     }
   }, [currentUser, navigate])
