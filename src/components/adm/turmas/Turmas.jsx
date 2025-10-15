@@ -1,6 +1,6 @@
 import CardTurma from './CardTurma'
 import { IoAddCircle  } from 'react-icons/io5'
-import { useState, useEffect, use } from 'react'
+import { useState, useEffect } from 'react'
 import { Routes, Route, useNavigate, useLocation } from 'react-router-dom'
 import EditTurma from './EditTurma'
 import { apiGet } from '../../../api'
@@ -50,7 +50,7 @@ export default function Turmas() {
               onChange={handleChange}
             />
 
-            <button className='adicionarTurma' onClick={() => { navigate('/admin/turmas/createTurma') }} ><IoAddCircle/></button>
+            <button className='buttonCreate' onClick={() => { navigate('/admin/turmas/createTurma') }} ><IoAddCircle/></button>
             <div className='grid-turmas'>
               {turmasFiltradas.length > 0 ? (
                 turmasFiltradas.map((turma) => (

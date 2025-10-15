@@ -2,6 +2,7 @@ import '../SideBar/SideBar.css'
 import { TiGroup } from 'react-icons/ti'
 import { GrUserManager } from 'react-icons/gr'
 import { FaBook, FaUser } from 'react-icons/fa'
+import { IoBookOutline } from 'react-icons/io5'
 import LiSideBar from '../SideBar/LiSideBar'
 import { useContext } from 'react'
 import { UserContext } from '../../context/UserContext'
@@ -23,10 +24,16 @@ function Sidebar() {
     },
     {
       id: 3,
-      url: '/admin',
+      url: '/admin/professores',
       text: 'Professores',
       icon: <GrUserManager />,
     },
+    {
+      id: 4,
+      url: '/admin/disciplinas',
+      text: 'Disciplinas',
+      icon: <IoBookOutline/>
+    }
   ]
   return (
     <div className='sidebar'>

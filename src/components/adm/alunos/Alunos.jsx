@@ -1,21 +1,25 @@
 import './Alunos.css'
+import { IoAddCircle  } from 'react-icons/io5'
 import { useEffect, useState } from 'react'
 import CardAluno from './CardAluno'
 import EditAluno from './EditAluno'
-import { FaSearch } from 'react-icons/fa'
+import CreateAluno from './CreateAluno'
 import Search from '../Search'
 import { apiGet } from '../../../api'
 import { Route, Routes } from 'react-router-dom'
+import { useNavigate, useLocation } from 'react-router-dom'
 
 export default function Alunos() {
+  const navigate = useNavigate()
+  const location = useLocation()
   const [alunos, setAlunos] = useState([])
   const [searchAluno, setSearchAluno] = useState('')
 
   useEffect(() => {
-    apiGet(`/api/usuarios?tipo=aluno`)
+    apiGet(`/api/usuarios?tipo=aluno&ativo=true`)
       .then((data) => setAlunos(data))
       .catch((err) => console.log(err))
-  }, [])
+  }, [location.pathname])
 
   function handleChange(evento) {
     setSearchAluno(evento.target.value)
@@ -30,6 +34,7 @@ export default function Alunos() {
         element={
           <section className='conteiner-alunos-search'>
             <Search type='text' name='aluno' placeholder='Procurar aluno' onChange={handleChange} />
+            <button className='buttonCreate' onClick={() => { navigate('/admin/alunos/createAluno') }} ><IoAddCircle/></button>
 
             <div className='grid-alunos'>
               {alunosFiltrados.length !== 0 ? (
@@ -42,6 +47,7 @@ export default function Alunos() {
         }
       />
       <Route path=':id' element={<EditAluno/>} />
+      <Route path='createAluno' element={<CreateAluno/>} />
     </Routes>
   )
 }

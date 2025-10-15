@@ -1,0 +1,16 @@
+.conteiner-professores-search {
+  width: 100%;
+  min-height: 100dvh;
+  padding: 100px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+
+.grid-professores {
+  display: grid;
+  flex-wrap: wrap;
+  grid-template-columns: repeat(auto-fit, minmax(350px, auto));
+  gap: 30px;
+}
