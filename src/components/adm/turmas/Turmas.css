@@ -23,7 +23,7 @@
   color: rgba(0, 0, 0, 0.5);
 }
 
-.adicionarTurma {
+.buttonCreate {
   all: unset;
   position: fixed;
   right: 100px;
@@ -32,7 +32,7 @@
 
 }
 
-.adicionarTurma svg {
+.buttonCreate svg {
   cursor: pointer;
   font-size: 70px;
   color: #1a237e;
@@ -40,7 +40,7 @@
 }
 
 
-.adicionarTurma svg:hover{
+.buttonCreate svg:hover{
   cursor: pointer;
   color: #17803f;
 }

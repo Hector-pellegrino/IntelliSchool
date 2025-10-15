@@ -90,10 +90,14 @@ export default function EditTurma({ onUpdate }) {
         return data
       })
       .catch((err) => console.log(err))
-    await apiDelete(`/api/professor-turma-disciplina/${data.id_atribuicao}`)
-    setMateriasTurma(
-      materiasTurma.filter((currentMateria) => currentMateria.disciplina.id !== materia.id)
+    const messageDisciplinaDelete = await apiDelete(
+      `/api/professor-turma-disciplina/${data.id_atribuicao}`
     )
+    if (messageDisciplinaDelete.message === 'Atribuição removida') {
+      setMateriasTurma(
+        materiasTurma.filter((currentMateria) => currentMateria.disciplina.id !== materia.id)
+      )
+    }
   }
 
   function addMateria(event, novaMateria, novoProfessor, CurrentMateriaNome) {
@@ -138,8 +142,11 @@ export default function EditTurma({ onUpdate }) {
 
   async function handleDelete(e) {
     e.preventDefault()
-    await apiDelete(`/api/turmas/${id}`)
-    navigate('/admin/turmas')
+    const messageTurmaDelete = await apiDelete(`/api/turmas/${id}`)
+    console.log(messageTurmaDelete)
+    if (messageTurmaDelete.message === 'Turma deletada') {
+      navigate('/admin/turmas')
+    }
   }
 
   if (isLoading) {
@@ -277,22 +284,34 @@ export default function EditTurma({ onUpdate }) {
         </div>
         <div className='salvar-excluir'>
           <button className='excluir-turma'>
-            <FaTrashAlt onClick={(e) => (handleModalOpen(e))} />
+            <FaTrashAlt onClick={(e) => handleModalOpen(e)} />
           </button>
           <button className='button-enviar' onClick={handleSave}>
             Salvar
           </button>
         </div>
       </form>
-      {isModalOpen && (<div className='modal-excluir-turma'>
-        <div className='modal-content'>
-          <p>Tem certeza que deseja excluir esta turma?</p>
-          <div className='modal-buttons'>
-            <button className='modal-button' id='cancel' onClick={() => setIsModalOpen(false)}>Cancelar</button>
-            <button className='modal-button' id='confirm' onClick={(e) => { handleDelete(e)}}>Confirmar</button>
+      {isModalOpen && (
+        <div className='modal-excluir-turma'>
+          <div className='modal-content'>
+            <p>Tem certeza que deseja excluir esta turma?</p>
+            <div className='modal-buttons'>
+              <button className='modal-button' id='cancel' onClick={() => setIsModalOpen(false)}>
+                Cancelar
+              </button>
+              <button
+                className='modal-button'
+                id='confirm'
+                onClick={(e) => {
+                  handleDelete(e)
+                }}
+              >
+                Confirmar
+              </button>
+            </div>
           </div>
         </div>
-      </div>)}
+      )}
     </section>
   )
 }

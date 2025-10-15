@@ -1,5 +1,5 @@
 import './CreateTurma.css'
-import { IoBookOutline, IoReturnUpBackOutline } from 'react-icons/io5'
+import { IoReturnUpBackOutline } from 'react-icons/io5'
 import { MdCreateNewFolder } from 'react-icons/md'
 
 import { useNavigate } from 'react-router-dom'
