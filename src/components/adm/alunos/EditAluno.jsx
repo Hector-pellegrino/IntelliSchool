@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { apiDelete, apiGet, apiPost, apiPut } from '../../../api'
 import Loading from '../../Loading'
+import './EditAluno.css'
 
 import { IoReturnUpBackOutline } from 'react-icons/io5'
 
@@ -85,12 +86,13 @@ export default function EditAluno() {
   return (
     <div>
       {aluno.nome ? (
-        <section>
+        <section className='container'>
           <button className='button-voltar' onClick={navigateAlunos}>
             <IoReturnUpBackOutline />
           </button>
           <form onSubmit={salvar}>
-            <div>
+            <h2>Editar Aluno</h2>
+            <div className='forms'>
               <label htmlFor='nome'>Nome:</label>
               <input
                 type='text'
@@ -100,7 +102,7 @@ export default function EditAluno() {
                 onChange={handleChange}
               />
             </div>
-            <div>
+            <div className='forms'>
               <label htmlFor='email'>Email:</label>
               <input
                 type='email'
@@ -110,7 +112,7 @@ export default function EditAluno() {
                 onChange={handleChange}
               />
             </div>
-            <div>
+            <div className='forms'>
               <label htmlFor='novaSenha'>Nova senha:</label>
               <input
                 type='password'
@@ -119,7 +121,7 @@ export default function EditAluno() {
                 onChange={(e) => setNovaSenha(e.target.value)}
               />
             </div>
-            <div>
+            <div className='forms'>
               <label htmlFor='confirmarSenha'>Confirmar senha:</label>
               <input
                 type='password'
@@ -128,39 +130,43 @@ export default function EditAluno() {
                 onChange={handleChange}
               />
             </div>
-            <div>
-              <label htmlFor='ativo'>Ativo:</label>
+            <div className='ativo'>
               <input
                 type='checkbox'
                 name='ativo'
                 defaultChecked={aluno.ativo}
                 onChange={handleChange}
               />
+              <label htmlFor='ativo'>Ativo</label>
             </div>
             <button type='submit'>Salvar</button>
           </form>
           {turmaAluno.length === 0 ? (
-            <>
-              <h2>Matricular Aluno: </h2>{' '}
-              <select
-                name='selectTurma'
-                id='selectTurma'
-                onChange={(e) => setSelectTurma(e.target.value)}
-              >
-                <option value=''>Selecione uma turma</option>
-                {allTurmas.map((turma) => (
-                  <option key={turma.id} value={turma.id}>
-                    {turma.serie} - {turma.ano} - {turma.periodo}
-                  </option>
-                ))}
-              </select>
-              <button onClick={matricularAluno}>Matricular</button>
-            </>
+            <div className='matricula'>
+              <h3>Matricular Aluno: </h3>{' '}
+              <div>
+                <select
+                  name='selectTurma'
+                  id='selectTurma'
+                  onChange={(e) => setSelectTurma(e.target.value)}
+                >
+                  <option value=''>Selecione uma turma</option>
+                  {allTurmas.map((turma) => (
+                    <option key={turma.id} value={turma.id}>
+                      {turma.serie} - {turma.ano} - {turma.periodo}
+                    </option>
+                  ))}
+                </select>
+                <button className='button-matricular' onClick={matricularAluno}>Matricular</button>
+              </div>
+            </div>
           ) : (
-            <div>
+            <div className='matricula'>
               <h3>Turma: </h3>
-              <p>{turmaAluno.turma.serie}</p>
-              <button onClick={removerAlunoTurma}>Remover Aluno da turma</button>
+              <div>
+                <p>{turmaAluno.turma.serie}</p>
+                <button className='button-remover' onClick={removerAlunoTurma}>Remover Aluno da turma</button>
+              </div>
             </div>
           )}
         </section>
