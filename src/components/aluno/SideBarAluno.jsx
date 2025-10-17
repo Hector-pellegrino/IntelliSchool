@@ -1,8 +1,13 @@
 import './SideBarAluno.css'
 import { FaBook, FaChartBar, FaUserGraduate, FaFileAlt, FaUser, FaTasks } from 'react-icons/fa'
 import LiSideBar from '../SideBar/LiSideBar'
+import { useContext } from 'react'
+import { UserContext } from '../../context/UserContext'
+import { useNavigate } from 'react-router-dom'
 
 function Sidebar() {
+  const { currentUser } = useContext(UserContext)
+  const navigate = useNavigate()
   const links = [
     {
       id: 1,
@@ -23,19 +28,27 @@ function Sidebar() {
       icon: <FaBook />,
     },
     {
-      id: 4,
+      id: 3,
       url: '/aluno',
-      text: 'Desempenho',
-      icon: <FaChartBar />,
+      text: 'Inteligencia Artificial',
+      icon: <FaBook />,
     },
   ]
+  function logout() {
+    sessionStorage.removeItem('user')
+    sessionStorage.removeItem('message')
+    navigate('/')
+  }
   return (
     <div className='sidebar'>
       {/* Perfil */}
       <div className='profile'>
         <FaUser fontSize={'60px'} />
-        <h3>João da Silva</h3>
+        <h3>{currentUser.nome}</h3>
         <p>Universidade XPTO</p>
+        <button className='logout' onClick={logout}>
+          Sair
+        </button>
       </div>
 
       {/* Menu */}

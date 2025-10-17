@@ -53,7 +53,6 @@ export default function EditProfessor() {
       .catch((err) => console.log(err))
   }, [id])
 
-
   useEffect(() => {
     apiGet('/api/turmas')
       .then((data) => setAllTurmas(data))
@@ -95,7 +94,12 @@ export default function EditProfessor() {
       // opcional: atualizar dados locais
       apiGet(`/api/usuarios/${id}`).then((d) => {
         setProfessor(d)
-        setFormEditProfessor((prev) => ({ ...prev, nome: d.nome ?? '', email: d.email ?? '', ativo: !!d.ativo }))
+        setFormEditProfessor((prev) => ({
+          ...prev,
+          nome: d.nome ?? '',
+          email: d.email ?? '',
+          ativo: !!d.ativo,
+        }))
       })
     } catch (err) {
       console.log(err)
@@ -153,114 +157,118 @@ export default function EditProfessor() {
 
   return (
     <div>
-      <section className='container'>
+      <section className='section-edit-professor'>
         <button className='button-voltar' onClick={navigateProfessores}>
           <IoReturnUpBackOutline />
         </button>
-        <form onSubmit={salvar}>
-          <div className='forms'>
-            <label htmlFor='nome'>Nome:</label>
-            <input
-              type='text'
-              placeholder='Nome do Professor'
-              name='nome'
-              value={formEditProfessor.nome}
-              onChange={handleChange}
-            />
-          </div>
-          <div className='forms'>
-            <label htmlFor='email'>Email:</label>
-            <input
-              type='email'
-              placeholder='Email do Professor'
-              name='email'
-              value={formEditProfessor.email}
-              onChange={handleChange}
-            />
-          </div>
-          <div className='forms'>
-            <label htmlFor='novaSenha'>Nova senha:</label>
-            <input
-              type='password'
-              placeholder='Senha do Professor'
-              name='novaSenha'
-              value={novaSenha}
-              onChange={(e) => setNovaSenha(e.target.value)}
-            />
-          </div>
-          <div className='forms'>
-            <label htmlFor='confirmarSenha'>Confirmar senha:</label>
-            <input
-              type='password'
-              placeholder='Confirme a senha'
-              name='senha'
-              value={formEditProfessor.senha || ''}
-              onChange={handleChange}
-            />
-          </div>
-          <div className='ativo'>
-            <input
-              type='checkbox'
-              name='ativo'
-              checked={!!formEditProfessor.ativo}
-              onChange={handleChange}
-            />
-            <label htmlFor='ativo'>Ativo</label>
-          </div>
-          <button type='submit'>Salvar</button>
-        </form>
+        <section className='conteiner-edit-professor'>
+          <form onSubmit={salvar} className='form-edit-professor'>
+            <div className='forms'>
+              <label htmlFor='nome'>Nome:</label>
+              <input
+                type='text'
+                placeholder='Nome do Professor'
+                name='nome'
+                value={formEditProfessor.nome}
+                onChange={handleChange}
+              />
+            </div>
+            <div className='forms'>
+              <label htmlFor='email'>Email:</label>
+              <input
+                type='email'
+                placeholder='Email do Professor'
+                name='email'
+                value={formEditProfessor.email}
+                onChange={handleChange}
+              />
+            </div>
+            <div className='forms'>
+              <label htmlFor='novaSenha'>Nova senha:</label>
+              <input
+                type='password'
+                placeholder='Senha do Professor'
+                name='novaSenha'
+                value={novaSenha}
+                onChange={(e) => setNovaSenha(e.target.value)}
+              />
+            </div>
+            <div className='forms'>
+              <label htmlFor='confirmarSenha'>Confirmar senha:</label>
+              <input
+                type='password'
+                placeholder='Confirme a senha'
+                name='senha'
+                value={formEditProfessor.senha || ''}
+                onChange={handleChange}
+              />
+            </div>
+            <div className='ativo'>
+              <input
+                type='checkbox'
+                name='ativo'
+                checked={!!formEditProfessor.ativo}
+                onChange={handleChange}
+              />
+              <label htmlFor='ativo'>Ativo</label>
+            </div>
+            <button type='submit'>Salvar</button>
+          </form>
 
-        <div className='atribuicoes-professor'>
-          <h3>Atribuições</h3>
-          {turmasProfessor.length > 0 ? (
-            turmasProfessor.map((atribuicao) => (
-              <div key={atribuicao.id}>
-                <div>
-                  <IoBookOutline />
-                  <p>{atribuicao.disciplina?.nome} - {atribuicao.turma?.serie}</p>
+          <div className='atribuicoes-professor'>
+            <h3>Atribuições</h3>
+            {turmasProfessor.length > 0 ? (
+              turmasProfessor.map((atribuicao) => (
+                <div key={atribuicao.id}>
+                  <div>
+                    <IoBookOutline />
+                    <p>
+                      {atribuicao.disciplina?.nome} - {atribuicao.turma?.serie}
+                    </p>
+                  </div>
+                  <FaTrashAlt onClick={() => removerAtribuição(atribuicao.id)} />
                 </div>
-                <FaTrashAlt onClick={() => removerAtribuição(atribuicao.id)} />
-              </div>
-            ))
-          ) : (
-            <p>O professor não possui nenhuma atribuição</p>
-          )}
-        </div>
+              ))
+            ) : (
+              <p>O professor não possui nenhuma atribuição</p>
+            )}
+          </div>
 
-        <div className='atribuicoes-professor'>
-          <h3>Atribuir professor a uma turma: </h3>
-          <div className='selecao-professores'>
-            <select
-              name='selectTurma'
-              id='selectTurma'
-              value={selectTurma}
-              onChange={(e) => setSelectTurma(e.target.value)}
-            >
-              <option value=''>Selecione uma turma</option>
-              {allTurmas.map((turma) => (
-                <option key={turma.id} value={turma.id}>
-                  {turma.serie} - {turma.ano} - {turma.periodo}
-                </option>
-              ))}
-            </select>
-            <select
-              name='selectDisciplina'
-              id='selectdisciplina'
-              value={selectMateria}
-              onChange={(e) => setSelectMateria(e.target.value)}
-            >
-              <option value=''>Selecione uma disciplina</option>
-              {allMaterias.map((materia) => (
-                <option key={materia.id} value={materia.id}>
-                  {materia.nome} - {materia.ementa}
-                </option>
-              ))}
-            </select>
+          <div className='atribuicoes-professor'>
+            <h3>Atribuir professor a uma turma: </h3>
+            <div className='selecao-professores'>
+              <select
+                name='selectTurma'
+                id='selectTurma'
+                value={selectTurma}
+                onChange={(e) => setSelectTurma(e.target.value)}
+              >
+                <option value=''>Selecione uma turma</option>
+                {allTurmas.map((turma) => (
+                  <option key={turma.id} value={turma.id}>
+                    {turma.serie} - {turma.ano} - {turma.periodo}
+                  </option>
+                ))}
+              </select>
+              <select
+                name='selectDisciplina'
+                id='selectdisciplina'
+                value={selectMateria}
+                onChange={(e) => setSelectMateria(e.target.value)}
+              >
+                <option value=''>Selecione uma disciplina</option>
+                {allMaterias.map((materia) => (
+                  <option key={materia.id} value={materia.id}>
+                    {materia.nome} - {materia.ementa}
+                  </option>
+                ))}
+              </select>
+            </div>
+            <div className='button-atribuir'>
+              <button onClick={atribuir}>Atribuir</button>
+            </div>
           </div>
-          <div className='button-atribuir'>
-            <button onClick={atribuir}>Atribuir</button>
-          </div>
-        </div>
+        </section>
       </section>
     </div>
   )

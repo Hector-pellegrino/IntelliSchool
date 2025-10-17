@@ -1,8 +1,9 @@
+import './FormsProfessores.css'
+
 import { IoReturnUpBackOutline } from 'react-icons/io5'
 import { useNavigate } from 'react-router-dom'
 import { useState } from 'react'
 import { apiPost } from '../../../api'
-import './Professores.css'
 
 export default function CreateProfessor() {
   const navigate = useNavigate()
@@ -24,7 +25,11 @@ export default function CreateProfessor() {
 
   async function handleSubmit(e) {
     e.preventDefault()
-    if (professorCreation.nome === '' || professorCreation.email === '' || professorCreation.senha === '') {
+    if (
+      professorCreation.nome === '' ||
+      professorCreation.email === '' ||
+      professorCreation.senha === ''
+    ) {
       return alert('Por favor, preencha todos os campos')
     }
     await apiPost('/api/usuarios', { ...professorCreation })
@@ -37,50 +42,52 @@ export default function CreateProfessor() {
     navigateProfessor()
   }
   return (
-    <section className='container'>
+    <section className='section-create-professor'>
       <button className='button-voltar' onClick={navigateProfessor}>
         <IoReturnUpBackOutline />
       </button>
-      <form>
-        <h2>Cadastrar Professor</h2>
-        <div className='forms'>
-          <label htmlFor=''>Nome:</label>
-          <input
-            type='text'
-            placeholder='Nome do professor'
-            name='nome'
-            required
-            onChange={handleChange}
-          />
-        </div>
-        <div className='forms'>
-          <label htmlFor=''>Email:</label>
-          <input
-            type='email'
-            placeholder='Email do professor'
-            name='email'
-            required
-            onChange={handleChange}
-          />
-        </div>
-        <div className='forms'>
-          <label htmlFor=''>Senha:</label>
-          <input
-            type='password'
-            placeholder='Senha do professor'
-            name='senha'
-            required
-            onChange={handleChange}
-          />
-        </div>
-        <div className='ativo'>
-          <input type='checkbox' name='ativo' onChange={handleChange} />
-          <label htmlFor=''>Ativo</label>
-        </div>
-        <button type='submit' onClick={handleSubmit}>
-          Criar Professor
-        </button>
-      </form>
+      <section className='conteiner-create-professor'>
+        <form className='form-create-professor'>
+          <h2>Cadastrar Professor</h2>
+          <div className='forms'>
+            <label htmlFor=''>Nome:</label>
+            <input
+              type='text'
+              placeholder='Nome do professor'
+              name='nome'
+              required
+              onChange={handleChange}
+            />
+          </div>
+          <div className='forms'>
+            <label htmlFor=''>Email:</label>
+            <input
+              type='email'
+              placeholder='Email do professor'
+              name='email'
+              required
+              onChange={handleChange}
+            />
+          </div>
+          <div className='forms'>
+            <label htmlFor=''>Senha:</label>
+            <input
+              type='password'
+              placeholder='Senha do professor'
+              name='senha'
+              required
+              onChange={handleChange}
+            />
+          </div>
+          <div className='ativo'>
+            <input type='checkbox' name='ativo' onChange={handleChange} />
+            <label htmlFor=''>Ativo</label>
+          </div>
+          <button type='submit' onClick={handleSubmit}>
+            Criar Professor
+          </button>
+        </form>
+      </section>
     </section>
   )
 }

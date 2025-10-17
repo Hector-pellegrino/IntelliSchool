@@ -86,89 +86,95 @@ export default function EditAluno() {
   return (
     <div>
       {aluno.nome ? (
-        <section className='container'>
+        <section className='section-edit-aluno'>
           <button className='button-voltar' onClick={navigateAlunos}>
             <IoReturnUpBackOutline />
           </button>
-          <form onSubmit={salvar}>
-            <h2>Editar Aluno</h2>
-            <div className='forms'>
-              <label htmlFor='nome'>Nome:</label>
-              <input
-                type='text'
-                placeholder='Nome do Aluno'
-                name='nome'
-                defaultValue={aluno.nome}
-                onChange={handleChange}
-              />
-            </div>
-            <div className='forms'>
-              <label htmlFor='email'>Email:</label>
-              <input
-                type='email'
-                placeholder='Email do Aluno'
-                name='email'
-                defaultValue={aluno.email}
-                onChange={handleChange}
-              />
-            </div>
-            <div className='forms'>
-              <label htmlFor='novaSenha'>Nova senha:</label>
-              <input
-                type='password'
-                placeholder='Senha do Aluno'
-                name='novaSenha'
-                onChange={(e) => setNovaSenha(e.target.value)}
-              />
-            </div>
-            <div className='forms'>
-              <label htmlFor='confirmarSenha'>Confirmar senha:</label>
-              <input
-                type='password'
-                placeholder='Confirme a senha'
-                name='senha'
-                onChange={handleChange}
-              />
-            </div>
-            <div className='ativo'>
-              <input
-                type='checkbox'
-                name='ativo'
-                defaultChecked={aluno.ativo}
-                onChange={handleChange}
-              />
-              <label htmlFor='ativo'>Ativo</label>
-            </div>
-            <button type='submit'>Salvar</button>
-          </form>
-          {turmaAluno.length === 0 ? (
-            <div className='matricula'>
-              <h3>Matricular Aluno: </h3>{' '}
-              <div>
-                <select
-                  name='selectTurma'
-                  id='selectTurma'
-                  onChange={(e) => setSelectTurma(e.target.value)}
-                >
-                  <option value=''>Selecione uma turma</option>
-                  {allTurmas.map((turma) => (
-                    <option key={turma.id} value={turma.id}>
-                      {turma.serie} - {turma.ano} - {turma.periodo}
-                    </option>
-                  ))}
-                </select>
-                <button className='button-matricular' onClick={matricularAluno}>Matricular</button>
+          <section className='conteiner-edit-aluno'>
+            <form onSubmit={salvar} className='form-edit-aluno'>
+              <h2 className='h2-edit'>Editar Aluno</h2>
+              <div className='forms'>
+                <label htmlFor='nome'>Nome:</label>
+                <input
+                  type='text'
+                  placeholder='Nome do Aluno'
+                  name='nome'
+                  defaultValue={aluno.nome}
+                  onChange={handleChange}
+                />
               </div>
-            </div>
-          ) : (
-            <div className='matricula'>
-              <h3>Turma: </h3>
-              <div>
-                <p>{turmaAluno.turma.serie}</p>
-                <button className='button-remover' onClick={removerAlunoTurma}>Remover Aluno da turma</button>
+              <div className='forms'>
+                <label htmlFor='email'>Email:</label>
+                <input
+                  type='email'
+                  placeholder='Email do Aluno'
+                  name='email'
+                  defaultValue={aluno.email}
+                  onChange={handleChange}
+                />
               </div>
-            </div>
-          )}
+              <div className='forms'>
+                <label htmlFor='novaSenha'>Nova senha:</label>
+                <input
+                  type='password'
+                  placeholder='Senha do Aluno'
+                  name='novaSenha'
+                  onChange={(e) => setNovaSenha(e.target.value)}
+                />
+              </div>
+              <div className='forms'>
+                <label htmlFor='confirmarSenha'>Confirmar senha:</label>
+                <input
+                  type='password'
+                  placeholder='Confirme a senha'
+                  name='senha'
+                  onChange={handleChange}
+                />
+              </div>
+              <div className='ativo'>
+                <input
+                  type='checkbox'
+                  name='ativo'
+                  defaultChecked={aluno.ativo}
+                  onChange={handleChange}
+                />
+                <label htmlFor='ativo'>Ativo</label>
+              </div>
+              <button type='submit'>Salvar</button>
+            </form>
+            {turmaAluno.length === 0 ? (
+              <div className='matricula'>
+                <h3>Matricular Aluno: </h3>{' '}
+                <div>
+                  <select
+                    name='selectTurma'
+                    id='selectTurma'
+                    onChange={(e) => setSelectTurma(e.target.value)}
+                  >
+                    <option value=''>Selecione uma turma</option>
+                    {allTurmas.map((turma) => (
+                      <option key={turma.id} value={turma.id}>
+                        {turma.serie} - {turma.ano} - {turma.periodo}
+                      </option>
+                    ))}
+                  </select>
+                  <button className='button-matricular' onClick={matricularAluno}>
+                    Matricular
+                  </button>
+                </div>
+              </div>
+            ) : (
+              <div className='matricula'>
+                <h3>Turma: </h3>
+                <div>
+                  <p>{turmaAluno.turma.serie}</p>
+                  <button className='button-remover' onClick={removerAlunoTurma}>
+                    Remover Aluno da turma
+                  </button>
+                </div>
+              </div>
+            )}
+          </section>
         </section>
       ) : (
         <Loading />

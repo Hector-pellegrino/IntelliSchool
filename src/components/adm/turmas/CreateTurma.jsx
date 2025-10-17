@@ -28,12 +28,13 @@ export default function CreateTurma({ onUpdate }) {
     if (turmaCreation.ano === '' || turmaCreation.serie === '' || turmaCreation.periodo === '') {
       return alert('Por favor, preencha todos os campos')
     }
-    await apiPost('/api/turmas', {
+    const data = await apiPost('/api/turmas', {
       ano: turmaCreation.ano,
       serie: turmaCreation.serie,
       periodo: turmaCreation.periodo,
+      ativo: true,
     }).then((data) => {
-      onUpdate(data.data[0])
+      alert(data.message)
     })
     navigate('/admin/turmas')
   }

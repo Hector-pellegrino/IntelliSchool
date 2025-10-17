@@ -6,8 +6,10 @@ import { IoBookOutline } from 'react-icons/io5'
 import LiSideBar from '../SideBar/LiSideBar'
 import { useContext } from 'react'
 import { UserContext } from '../../context/UserContext'
+import { useNavigate } from 'react-router-dom'
 
 function Sidebar() {
+  const navigate = useNavigate()
   const { currentUser } = useContext(UserContext)
   const links = [
     {
@@ -32,9 +34,15 @@ function Sidebar() {
       id: 4,
       url: '/admin/disciplinas',
       text: 'Disciplinas',
-      icon: <IoBookOutline/>
-    }
+      icon: <IoBookOutline />,
+    },
   ]
+
+  function logout() {
+    sessionStorage.removeItem('user')
+    sessionStorage.removeItem('message')
+    navigate('/')
+  }
   return (
     <div className='sidebar'>
       {/* Perfil */}
@@ -42,6 +50,9 @@ function Sidebar() {
         <FaUser fontSize={'60px'} />
         <h3>{currentUser.nome}</h3>
         <p>Admin</p>
+        <button className='logout' onClick={logout}>
+          Sair
+        </button>
       </div>
 
       {/* Menu */}

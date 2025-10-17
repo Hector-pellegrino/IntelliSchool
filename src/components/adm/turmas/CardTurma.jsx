@@ -3,7 +3,7 @@ import './CardTurma.css'
 import { useNavigate } from 'react-router-dom'
 
 // , alunos, professores, search
-export default function CardTurma({ id, ano, serie, search }) {
+export default function CardTurma({ id, serie }) {
   const navigate = useNavigate()
   function setarTurma() {
     navigate(`/admin/turmas/${id}`)
