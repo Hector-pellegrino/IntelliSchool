@@ -1,0 +1,12 @@
+.conteiner-disciplinas-search {
+  width: 100%;
+  min-height: 100dvh;
+  padding: 100px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.grid-disciplinas {
+  min-width: 100%;
+}

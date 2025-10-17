@@ -1,5 +1,5 @@
 import CardTurma from './CardTurma'
-import { IoAddCircle  } from 'react-icons/io5'
+import { IoAddCircle } from 'react-icons/io5'
 import { useState, useEffect } from 'react'
 import { Routes, Route, useNavigate, useLocation } from 'react-router-dom'
 import EditTurma from './EditTurma'
@@ -11,7 +11,6 @@ import CreateTurma from './CreateTurma'
 export default function Turmas() {
   const location = useLocation()
   const navigate = useNavigate()
-
 
   const [turmas, setTurmas] = useState([])
 
@@ -50,12 +49,17 @@ export default function Turmas() {
               onChange={handleChange}
             />
 
-            <button className='buttonCreate' onClick={() => { navigate('/admin/turmas/createTurma') }} ><IoAddCircle/></button>
+            <button
+              className='buttonCreate'
+              onClick={() => {
+                navigate('/admin/turmas/createTurma')
+              }}
+            >
+              <IoAddCircle />
+            </button>
             <div className='grid-turmas'>
               {turmasFiltradas.length > 0 ? (
-                turmasFiltradas.map((turma) => (
-                  <CardTurma key={turma.id} {...turma} search={setSearchTurma} />
-                ))
+                turmasFiltradas.map((turma) => <CardTurma key={turma.id} {...turma} />)
               ) : (
                 <p>Nenhuma turma encontrada</p>
               )}

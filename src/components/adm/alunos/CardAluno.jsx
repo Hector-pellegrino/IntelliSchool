@@ -4,14 +4,19 @@ import { FaEdit } from 'react-icons/fa'
 import { useNavigate } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { apiGet } from '../../../api'
+import Loading from '../../Loading'
 
 export default function CardAluno({ id, nome, email }) {
   const navigate = useNavigate()
   const [turma, setTurma] = useState('carregando...')
+  const [carregando, setCarregando] = useState(true)
 
   useEffect(() => {
     apiGet(`/api/matriculas/aluno/${id}`)
-      .then((data) => setTurma(data[0]?.turma || 'carregando'))
+      .then((data) => {
+        setTurma(data[0]?.turma || 'carregando')
+        setCarregando(false)
+      })
       .catch((err) => console.log(err))
   }, [])
   function navigateEditAluno() {
@@ -19,20 +24,26 @@ export default function CardAluno({ id, nome, email }) {
   }
 
   return (
-    <div className='card-aluno'>
-      <FaCircleUser />
-      <div>
-        <p>
-          <span>Nome:</span> {nome}
-        </p>
-        <p>
-          <span>Email:</span> {email}
-        </p>
-        <p>
-          <span>Turma:</span> {turma.serie ? turma.serie : 'Sem turma'}
-        </p>
-        <FaEdit onClick={navigateEditAluno}/>
-      </div>
+    <div>
+      {carregando ? (
+        <Loading />
+      ) : (
+        <div className='card-aluno'>
+          <FaCircleUser />
+          <div>
+            <p>
+              <span>Nome:</span> {nome}
+            </p>
+            <p>
+              <span>Email:</span> {email}
+            </p>
+            <p>
+              <span>Turma:</span> {turma.serie ? turma.serie : 'Sem turma'}
+            </p>
+            <FaEdit onClick={navigateEditAluno} />
+          </div>
+        </div>
+      )}
     </div>
   )
 }

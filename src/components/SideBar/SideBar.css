@@ -24,3 +24,13 @@
   width: 100%;
   margin-top: 30px;
 }
+
+.logout {
+  all: unset;
+}
+
+.logout:hover {
+  cursor: pointer;
+  text-decoration: underline;
+  color: red;
+}

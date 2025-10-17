@@ -1,4 +1,5 @@
-.conteiner-edit-aluno {
+.conteiner-edit-professor,
+.conteiner-create-professor {
   font-family: sans-serif;
   padding: 30px;
   border-radius: 15px;
@@ -8,21 +9,6 @@
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
   background-color: #ffffff;
   color: #1a237e;
-}
-
-.section-create-turma {
-  min-height: 100dvh;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.h2-edit {
-  font-size: 28px;
-  font-weight: bold;
-  text-align: center;
-  margin-bottom: 20px;
 }
 
 .forms {
@@ -76,7 +62,8 @@
   left: 0;
 }
 
-.form-edit-aluno button {
+.form-edit-professor button,
+.form-create-professor button {
   background-color: #1a237e;
   color: #ffffff;
   font-weight: 600;
@@ -91,61 +78,65 @@
   transition: 0.2s ease;
 }
 
-.form-edit-aluno button:hover {
+.form-edit-professor button:hover,
+.form-create-professor button:hover {
   transform: scale(1.0375);
   text-decoration: underline;
 }
 
-.matricula {
+.atribuicoes-professor {
   width: 100%;
   margin-top: 5px;
+  max-width: 400px;
 }
 
-.matricula h3 {
+.atribuicoes-professor h3 {
   font-size: 18px;
 }
 
-.matricula p {
+.atribuicoes-professor p {
   font-size: 16px;
+  color: #000000;
 }
 
-.matricula div {
+.atribuicoes-professor div {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-top: 7px;
-  color: #000000;
 }
 
-.matricula div button,
-.matricula div select {
+.atribuicoes-professor div select {
   padding: 7px;
   font-size: 15px;
   border: solid 2px;
   border-radius: 10px;
 }
 
-.button-remover {
-  color: #ff1010;
-  background-color: transparent;
-  cursor: pointer;
-  transition: 0.3s ease;
+.selecao-professores {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
 }
 
-.button-remover:hover {
-  background-color: #ff1010;
-  color: #ffffff;
-  border: solid 2px #ff1010;
+.button-atribuir {
+  display: flex;
+  width: 100%;
 }
 
-.button-matricular {
+.button-atribuir button {
   color: #1a237e;
+  padding: 7px;
+  font-size: 15px;
+  border: solid 2px;
+  border-radius: 10px;
   background-color: transparent;
   cursor: pointer;
   transition: 0.3s ease;
+  margin-left: auto;
 }
 
-.button-matricular:hover {
+.button-atribuir button:hover {
   background-color: #1a237e;
   color: #ffffff;
   border: solid 2px #1a237e;
