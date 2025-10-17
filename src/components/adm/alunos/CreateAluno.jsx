@@ -2,6 +2,7 @@ import { IoReturnUpBackOutline } from 'react-icons/io5'
 import { useNavigate } from 'react-router-dom'
 import { useState } from 'react'
 import { apiPost } from '../../../api'
+import './EditAluno.css'
 
 export default function CreateAluno() {
   const navigate = useNavigate()
@@ -36,12 +37,13 @@ export default function CreateAluno() {
     navigateAlunos()
   }
   return (
-    <section>
+    <section className='container'>
       <button className='button-voltar' onClick={navigateAlunos}>
         <IoReturnUpBackOutline />
       </button>
       <form>
-        <div>
+        <h2>Cadastrar Aluno</h2>
+        <div className='forms'>
           <label htmlFor=''>Nome:</label>
           <input
             type='text'
@@ -51,7 +53,7 @@ export default function CreateAluno() {
             onChange={handleChange}
           />
         </div>
-        <div>
+        <div className='forms'>
           <label htmlFor=''>Email:</label>
           <input
             type='email'
@@ -61,7 +63,7 @@ export default function CreateAluno() {
             onChange={handleChange}
           />
         </div>
-        <div>
+        <div className='forms'>
           <label htmlFor=''>Senha:</label>
           <input
             type='password'
@@ -71,9 +73,9 @@ export default function CreateAluno() {
             onChange={handleChange}
           />
         </div>
-        <div>
-          <label htmlFor=''>Ativo:</label>
+        <div className='ativo'>
           <input type='checkbox' name='ativo' onChange={handleChange} />
+          <label htmlFor=''>Ativo</label>
         </div>
         <button type='submit' onClick={handleSubmit}>
           Criar Aluno

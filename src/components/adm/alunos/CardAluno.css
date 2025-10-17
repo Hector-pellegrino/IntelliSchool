@@ -1,6 +1,5 @@
 .card-aluno {
   display: flex;
-  flex-direction: column;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
   padding: 30px;
   gap: 40px;
@@ -31,7 +30,7 @@
 }
 
 .card-aluno > div > svg {
-  font-size: 50px;
+  font-size: 25px;
   color: black;
 }
 

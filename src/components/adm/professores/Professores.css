@@ -14,3 +14,152 @@
   grid-template-columns: repeat(auto-fit, minmax(350px, auto));
   gap: 30px;
 }
+
+.container {
+  font-family: sans-serif;
+  padding: 30px;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  background-color: #ffffff;
+  color: #1a237e;
+}
+
+h2 {
+  font-size: 28px;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.forms {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-bottom: 18px;
+}
+
+.forms label {
+  font-weight: 600;
+}
+
+.forms input {
+  padding: 10px;
+  border: 2px solid #d0d0d0;
+  border-radius: 10px;
+  font-size: 15px;
+  width: 400px;
+}
+
+.ativo {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-weight: 600;
+}
+
+.ativo input {
+  appearance: none;
+  border: 2px solid #1a237e;
+  border-radius: 2px;
+  width: 15px;
+  height: 15px;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.2s ease;
+}
+
+.ativo input:checked {
+  background-color: #1a237e;
+  border-color: #1a237e;
+}
+
+.ativo input:checked::after {
+  content: "✔";
+  position: absolute;
+  color: #ffffff;
+  font-size: 12px;
+  top: -2.5px;
+  left: 0;
+}
+
+form button {
+  background-color: #1a237e;
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 15px;
+  border: 2px solid #1a237e;
+  border-radius: 10px;
+  padding: 10px;
+  cursor: pointer;
+  align-items: center;
+  width: 100%;
+  margin-block: 10px;
+  transition: .2s ease;
+}
+
+form button:hover {
+  transform: scale(1.0375);
+  text-decoration: underline;
+}
+
+.atribuicoes-professor {
+  width: 100%;
+  margin-top: 5px;
+  max-width: 400px;
+}
+
+.atribuicoes-professor h3 {
+  font-size: 18px;
+}
+
+.atribuicoes-professor p {
+  font-size: 16px;
+  color: #000000;
+}
+
+.atribuicoes-professor div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 7px;
+}
+
+.atribuicoes-professor div select {
+  padding: 7px;
+  font-size: 15px;
+  border: solid 2px;
+  border-radius: 10px;
+}
+
+.selecao-professores {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.button-atribuir {
+  display: flex;
+  width: 100%;
+}
+
+.button-atribuir button{
+  color: #1a237e;
+  padding: 7px;
+  font-size: 15px;
+  border: solid 2px;
+  border-radius: 10px;
+  background-color: transparent;
+  cursor: pointer;
+  transition: .3s ease;
+  margin-left: auto;
+}
+
+.button-atribuir:hover  button{
+  background-color: #1a237e;
+  color: #ffffff;
+  border: solid 2px #1a237e;
+  ;
+}

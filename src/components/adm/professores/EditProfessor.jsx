@@ -153,12 +153,12 @@ export default function EditProfessor() {
 
   return (
     <div>
-      <section>
+      <section className='container'>
         <button className='button-voltar' onClick={navigateProfessores}>
           <IoReturnUpBackOutline />
         </button>
         <form onSubmit={salvar}>
-          <div>
+          <div className='forms'>
             <label htmlFor='nome'>Nome:</label>
             <input
               type='text'
@@ -168,7 +168,7 @@ export default function EditProfessor() {
               onChange={handleChange}
             />
           </div>
-          <div>
+          <div className='forms'>
             <label htmlFor='email'>Email:</label>
             <input
               type='email'
@@ -178,7 +178,7 @@ export default function EditProfessor() {
               onChange={handleChange}
             />
           </div>
-          <div>
+          <div className='forms'>
             <label htmlFor='novaSenha'>Nova senha:</label>
             <input
               type='password'
@@ -188,7 +188,7 @@ export default function EditProfessor() {
               onChange={(e) => setNovaSenha(e.target.value)}
             />
           </div>
-          <div>
+          <div className='forms'>
             <label htmlFor='confirmarSenha'>Confirmar senha:</label>
             <input
               type='password'
@@ -198,26 +198,26 @@ export default function EditProfessor() {
               onChange={handleChange}
             />
           </div>
-          <div>
-            <label htmlFor='ativo'>Ativo:</label>
+          <div className='ativo'>
             <input
               type='checkbox'
               name='ativo'
               checked={!!formEditProfessor.ativo}
               onChange={handleChange}
             />
+            <label htmlFor='ativo'>Ativo</label>
           </div>
           <button type='submit'>Salvar</button>
         </form>
 
-        <div>
-          <h2>Atribuições</h2>
+        <div className='atribuicoes-professor'>
+          <h3>Atribuições</h3>
           {turmasProfessor.length > 0 ? (
             turmasProfessor.map((atribuicao) => (
               <div key={atribuicao.id}>
                 <div>
                   <IoBookOutline />
-                  {atribuicao.disciplina?.nome} - {atribuicao.turma?.serie}
+                  <p>{atribuicao.disciplina?.nome} - {atribuicao.turma?.serie}</p>
                 </div>
                 <FaTrashAlt onClick={() => removerAtribuição(atribuicao.id)} />
               </div>
@@ -227,9 +227,9 @@ export default function EditProfessor() {
           )}
         </div>
 
-        <div>
-          <h2>Atribuir professor a uma turma: </h2>
-          <div>
+        <div className='atribuicoes-professor'>
+          <h3>Atribuir professor a uma turma: </h3>
+          <div className='selecao-professores'>
             <select
               name='selectTurma'
               id='selectTurma'
@@ -257,7 +257,9 @@ export default function EditProfessor() {
               ))}
             </select>
           </div>
-          <button onClick={atribuir}>Atribuir</button>
+          <div className='button-atribuir'>
+            <button onClick={atribuir}>Atribuir</button>
+          </div>
         </div>
       </section>
     </div>
