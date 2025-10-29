@@ -1,0 +1,124 @@
+.conteiner-atividades-disciplina {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 100px;
+}
+
+.filtros {
+  display: flex;
+  gap: 40px;
+  margin-bottom: 50px;
+}
+
+.filtros .btn-filtrar {
+  all: unset;
+  border: 1px solid #1a237e;
+  border-radius: 5px;
+  cursor: pointer;
+  color: #1a237e;
+  padding: 10px 20px;
+}
+
+.filtros .btn-filtrar:hover {
+  background-color: #1a237e;
+  color: #fff;
+}
+
+.filtros .active {
+  background-color: #1a237e;
+  color: #fff;
+}
+
+.lista-atividades-disciplina {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 20px;
+}
+
+.lista-atividades-disciplina li {
+  text-transform: capitalize;
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.2s ease-in-out;
+}
+.lista-atividades-disciplina li:hover {
+  cursor: pointer;
+  padding: 40px;
+}
+
+.lista-atividades-disciplina li div {
+  display: flex;
+  gap: 20px;
+}
+
+.lista-atividades-disciplina li div svg {
+  font-size: 40px;
+}
+
+.lista-atividades-disciplina li div .inspecionar:hover {
+  color: #1a237e;
+}
+.lista-atividades-disciplina li div .deletar:hover {
+  color: #ff0000;
+}
+
+.conteiner-modal {
+  width: 100%;
+  height: 100dvh;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+.modal {
+  position: absolute;
+  background-color: white;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.modal div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  font-size: 20px;
+  margin-block: 4px;
+}
+
+.modal div input {
+  outline: none;
+  border: none;
+  border-bottom: 1px solid #1a237e;
+  padding: 5px;
+  font-size: 20px;
+}
+
+.modal div button {
+  all: unset;
+  border: 1px solid #1a237e;
+  color: #1a237e;
+  padding: 10px 30px;
+  border-radius: 10px;
+  transition: all 0.3s ease-in-out;
+}
+
+.modal div button:hover {
+  cursor: pointer;
+  background-color: #1a237e;
+  color: #fff;
+}

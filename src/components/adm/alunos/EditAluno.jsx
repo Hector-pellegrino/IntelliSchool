@@ -27,6 +27,7 @@ export default function EditAluno() {
     })
       .then((data) => {
         alert(data.message)
+        buscarMatricula()
       })
       .catch((err) => console.log(err))
   }
@@ -71,22 +72,31 @@ export default function EditAluno() {
     apiGet('/api/turmas')
       .then((data) => setAllTurmas(data))
       .catch((err) => console.log(err))
-  })
+  }, [])
 
   useEffect(() => {
     apiGet(`/api/matriculas/aluno/${id}`)
       .then((data) => setTurmaAluno(data[0] || []))
       .catch((err) => console.log(err))
-  }, [turmaAluno])
+  }, [id])
   useEffect(() => {
     apiGet(`/api/usuarios/${id}`)
       .then((data) => setAluno(data))
       .catch((err) => console.log(err))
   }, [])
+
+  async function buscarMatricula() {
+    try {
+      const data = await apiGet(`/api/matriculas/aluno/${id}`)
+      setTurmaAluno(data[0] || [])
+    } catch (err) {
+      console.log(err)
+    }
+  }
   return (
-    <div>
+    <section className='section-edit-aluno'>
       {aluno.nome ? (
-        <section className='section-edit-aluno'>
+        <>
           <button className='button-voltar' onClick={navigateAlunos}>
             <IoReturnUpBackOutline />
           </button>
@@ -175,10 +185,10 @@ export default function EditAluno() {
               </div>
             )}
           </section>
-        </section>
+        </>
       ) : (
         <Loading />
       )}
-    </div>
+    </section>
   )
 }

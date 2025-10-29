@@ -1,0 +1,46 @@
+.conteiner-atividades-turma {
+  padding: 100px;
+  height: 100dvh;
+  width: 100%;
+  position: relative;
+}
+
+.section-atividades-turma {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  gap: 30px;
+}
+
+.button-voltar {
+  all: unset;
+  position: absolute;
+  left: 100px;
+  top: 25px;
+  cursor: pointer;
+}
+.section-atividades-turma h2 {
+  font-size: 40px;
+  color: #1a237e;
+}
+
+.section-atividades-turma ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  font-size: 20px;
+}
+
+.section-atividades-turma li {
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  padding: 20px;
+  transition: all 0.3s ease-in-out;
+}
+
+.section-atividades-turma li:hover {
+  cursor: pointer;
+  padding: 40px;
+  color: #1a237e;
+}

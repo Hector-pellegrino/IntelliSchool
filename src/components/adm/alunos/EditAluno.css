@@ -1,13 +1,14 @@
-.conteiner-edit-aluno {
+.section-edit-aluno {
   font-family: sans-serif;
-  padding: 30px;
-  border-radius: 15px;
+  padding: 100px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
   background-color: #ffffff;
   color: #1a237e;
+  position: relative;
+  min-height: 100dvh;
+  width: 100%;
 }
 
 .section-create-turma {
@@ -16,6 +17,12 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.conteiner-edit-aluno {
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  padding: 30px;
 }
 
 .h2-edit {
@@ -86,7 +93,6 @@
   padding: 10px;
   cursor: pointer;
   align-items: center;
-  width: 100%;
   margin-block: 10px;
   transition: 0.2s ease;
 }

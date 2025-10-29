@@ -11,6 +11,17 @@
   color: #1a237e;
 }
 
+.section-edit-professor,
+.section-create-professor {
+  position: relative;
+  height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
 .forms {
   display: flex;
   flex-direction: column;

@@ -2,7 +2,7 @@ import { IoReturnUpBackOutline } from 'react-icons/io5'
 import { useNavigate } from 'react-router-dom'
 import { useState } from 'react'
 import { apiPost } from '../../../api'
-import './EditAluno.css'
+import './CreateAluno.css'
 
 export default function CreateAluno() {
   const navigate = useNavigate()
@@ -37,50 +37,52 @@ export default function CreateAluno() {
     navigateAlunos()
   }
   return (
-    <section className='container'>
+    <section className='section-create-aluno'>
       <button className='button-voltar' onClick={navigateAlunos}>
         <IoReturnUpBackOutline />
       </button>
-      <form>
-        <h2>Cadastrar Aluno</h2>
-        <div className='forms'>
-          <label htmlFor=''>Nome:</label>
-          <input
-            type='text'
-            placeholder='Nome do aluno'
-            name='nome'
-            required
-            onChange={handleChange}
-          />
-        </div>
-        <div className='forms'>
-          <label htmlFor=''>Email:</label>
-          <input
-            type='email'
-            placeholder='Email do aluno'
-            name='email'
-            required
-            onChange={handleChange}
-          />
-        </div>
-        <div className='forms'>
-          <label htmlFor=''>Senha:</label>
-          <input
-            type='password'
-            placeholder='Senha do aluno'
-            name='senha'
-            required
-            onChange={handleChange}
-          />
-        </div>
-        <div className='ativo'>
-          <input type='checkbox' name='ativo' onChange={handleChange} />
-          <label htmlFor=''>Ativo</label>
-        </div>
-        <button type='submit' onClick={handleSubmit}>
-          Criar Aluno
-        </button>
-      </form>
+      <section className='conteiner-create-aluno'>
+        <form className='form-create-aluno'>
+          <h2>Cadastrar Aluno</h2>
+          <div className='forms'>
+            <label htmlFor=''>Nome:</label>
+            <input
+              type='text'
+              placeholder='Nome do aluno'
+              name='nome'
+              required
+              onChange={handleChange}
+            />
+          </div>
+          <div className='forms'>
+            <label htmlFor=''>Email:</label>
+            <input
+              type='email'
+              placeholder='Email do aluno'
+              name='email'
+              required
+              onChange={handleChange}
+            />
+          </div>
+          <div className='forms'>
+            <label htmlFor=''>Senha:</label>
+            <input
+              type='password'
+              placeholder='Senha do aluno'
+              name='senha'
+              required
+              onChange={handleChange}
+            />
+          </div>
+          <div className='ativo'>
+            <input type='checkbox' name='ativo' onChange={handleChange} />
+            <label htmlFor=''>Ativo</label>
+          </div>
+          <button type='submit' onClick={handleSubmit}>
+            Criar Aluno
+          </button>
+        </form>
+      </section>
     </section>
   )
 }

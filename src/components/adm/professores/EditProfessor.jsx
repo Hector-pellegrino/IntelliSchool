@@ -156,7 +156,7 @@ export default function EditProfessor() {
   if (!professor) return <Loading />
 
   return (
-    <div>
+    <>
       <section className='section-edit-professor'>
         <button className='button-voltar' onClick={navigateProfessores}>
           <IoReturnUpBackOutline />
@@ -270,6 +270,6 @@ export default function EditProfessor() {
           </div>
         </section>
       </section>
-    </div>
+    </>
   )
 }
