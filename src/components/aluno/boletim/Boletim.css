@@ -1,0 +1,13 @@
+.buttonGerarBoletim {
+  all: unset;
+  border: 1px solid #0d1440;
+  border-radius: 10px;
+  padding: 20px 15px;
+  transition: all 0.3s ease-in-out;
+}
+
+.buttonGerarBoletim:hover {
+  cursor: pointer;
+  background-color: #0d1440;
+  color: white;
+}

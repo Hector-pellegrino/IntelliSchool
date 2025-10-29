@@ -1,0 +1,33 @@
+.atividades-page {
+  padding: 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  width: 85dvw;
+  min-height: 90dvh;
+}
+
+.atividades-page h2 {
+  margin-bottom: 20px;
+  color: #0d1440;
+  font-size: 24px;
+  border-bottom: 2px solid #ddd;
+  padding-bottom: 10px;
+  width: 40%;
+}
+
+/* Lista */
+.atividades-lista {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.buttonsAtividades {
+  display: flex;
+  gap: 40px;
+  margin-bottom: 30px;
+}
+
+.atividade-header:hover {
+  cursor: pointer;
+  background: #f0f2fa;
+}

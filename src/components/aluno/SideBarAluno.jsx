@@ -17,15 +17,9 @@ function Sidebar() {
     },
     {
       id: 2,
-      url: '/aluno',
-      text: 'Relatórios',
+      url: '/aluno/boletim',
+      text: 'Boletim',
       icon: <FaFileAlt />,
-    },
-    {
-      id: 3,
-      url: '/aluno',
-      text: 'Matérias',
-      icon: <FaBook />,
     },
     {
       id: 3,
