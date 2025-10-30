@@ -12,23 +12,21 @@ import EditProfessor from './EditProfessor'
 
 export default function professores() {
   const navigate = useNavigate()
-  const location = useLocation()
-  const [professores, setProfessores] = useState([])
-  const [searchProfessor, setSearchProfessor] = useState('')
 
-  useEffect(() => {
-    apiGet(`/api/usuarios?tipo=professor&ativo=true`)
-      .then((data) => setProfessores(data))
-      .catch((err) => console.log(err))
-  }, [location.pathname])
+  const [professoresFiltrados, setProfessoresFiltrados] = useState('')
+  const [searchProfessor, setSearchProfessor] = useState('')
 
   function handleChange(evento) {
     setSearchProfessor(evento.target.value)
   }
-
-  const professoresFiltrados = professores.filter((professor) =>
-    professor.nome.toLowerCase().includes(searchProfessor.toLowerCase().trim())
-  )
+  async function procurar() {
+    const data = await apiGet(`/api/usuarios?tipo=professor`)
+    return setProfessoresFiltrados(
+      data.filter((professor) =>
+        professor.nome.toLowerCase().includes(searchProfessor.toLowerCase().trim())
+      )
+    )
+  }
   return (
     <Routes>
       <Route
@@ -40,6 +38,7 @@ export default function professores() {
               name='professor'
               placeholder='Procurar professor'
               onChange={handleChange}
+              onSearch={procurar}
             ></Search>
             <button
               className='buttonCreate'
@@ -62,8 +61,8 @@ export default function professores() {
           </section>
         }
       ></Route>
-      <Route path='createProfessor' element={<CreateProfessor/>} />
-      <Route path=':id' element={<EditProfessor/>} />
+      <Route path='createProfessor' element={<CreateProfessor />} />
+      <Route path=':id' element={<EditProfessor />} />
     </Routes>
   )
 }
