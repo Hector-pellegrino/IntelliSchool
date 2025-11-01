@@ -23,7 +23,7 @@ function Sidebar() {
     },
     {
       id: 3,
-      url: '/aluno',
+      url: '/aluno/ia',
       text: 'Inteligencia Artificial',
       icon: <FaBook />,
     },
@@ -39,7 +39,7 @@ function Sidebar() {
       <div className='profile'>
         <FaUser fontSize={'60px'} />
         <h3>{currentUser.nome}</h3>
-        <p>Universidade XPTO</p>
+        <p>Instituição Intelli-School</p>
         <button className='logout' onClick={logout}>
           Sair
         </button>
