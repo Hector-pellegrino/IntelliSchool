@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect, useContext } from 'react'
-import { UserContext } from '../../context/UserContext' // ajuste o caminho se necessário
-import { apiPost } from '../../api' // ajuste o caminho para onde fica seu api.js
+import { UserContext } from '../context/UserContext' // ajuste o caminho se necessário
+import { apiPost } from '../api' // ajuste o caminho para onde fica seu api.js
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 

@@ -1,13 +1,30 @@
 .buttonGerarBoletim {
   all: unset;
-  border: 1px solid #0d1440;
-  border-radius: 10px;
-  padding: 20px 15px;
-  transition: all 0.3s ease-in-out;
+  display: inline-block;
+  border: 2px solid #0d1440;
+  border-radius: 12px;
+  padding: 16px 24px;
+  font-weight: 600;
+  font-size: 18px;
+  color: #0d1440;
+  background: linear-gradient(145deg, #f0f2f7, #d9dde6);
+  box-shadow: 4px 4px 8px rgba(13, 20, 64, 0.15), -4px -4px 8px #ffffff;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  user-select: none;
+  text-align: center;
 }
 
-.buttonGerarBoletim:hover {
+.buttonGerarBoletim:hover,
+.buttonGerarBoletim:focus {
   cursor: pointer;
-  background-color: #0d1440;
-  color: white;
+  background: linear-gradient(145deg, #0d1440, #15255c);
+  color: #f0f2f7;
+  box-shadow: 0 0 12px #0d1440cc;
+  transform: translateY(-2px);
+  outline: none;
+}
+
+.buttonGerarBoletim:active {
+  transform: translateY(0);
+  box-shadow: inset 2px 2px 5px #0d144033;
 }

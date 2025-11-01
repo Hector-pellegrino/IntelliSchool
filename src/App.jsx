@@ -16,7 +16,7 @@ import Professor from './pages/Professor'
 import TurmasProfessor from './components/professor/turmas/TurmasProfessor'
 import Atividades from './components/aluno/atividades/Atividades'
 import Boletim from './components/aluno/boletim/Boletim'
-import ChatIA from './components/aluno/ChatIA'
+import ChatIA from './components/ChatIA'
 
 export default function App() {
   return (
@@ -69,6 +69,7 @@ export default function App() {
           >
             <Route index element={<Welcome />} />
             <Route path='turmas/*' element={<TurmasProfessor />}></Route>
+            <Route path='ia/*' element={<ChatIA />}></Route>
           </Route>
         </Routes>
       </Router>

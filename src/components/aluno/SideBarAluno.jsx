@@ -25,7 +25,7 @@ function Sidebar() {
       id: 3,
       url: '/aluno/ia',
       text: 'Inteligencia Artificial',
-      icon: <FaBook />,
+      icon: <FaRobot />,
     },
   ]
   function logout() {

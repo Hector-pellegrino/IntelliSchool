@@ -1,103 +1,571 @@
-.atividade {
-  background: #ffff;
-  border-radius: 12px;
-  margin-bottom: 15px;
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
-  width: 500px;
+/* ========================================
+   VARIÁVEIS CSS - Sistema de Design
+   ======================================== */
+:root {
+  /* Paleta de Cores Premium */
+  --color-primary: #0a84ff;
+  --color-primary-dark: #0066cc;
+  --color-primary-light: #64b5f6;
+
+  --color-accent: #ff9f0a;
+  --color-accent-dark: #ff8800;
+  --color-accent-light: #ffb340;
+
+  --color-success: #34c759;
+  --color-danger: #ff3b30;
+
+  --color-dark: #1c1c1e;
+  --color-dark-secondary: #2c2c2e;
+
+  --color-gray-100: #f5f5f7;
+  --color-gray-200: #e5e5ea;
+  --color-gray-300: #d1d1d6;
+  --color-gray-400: #aeaeb2;
+  --color-gray-500: #8e8e93;
+
+  --color-white: #ffffff;
+  --color-text-primary: #1d1d1f;
+  --color-text-secondary: #6e6e73;
+  --color-text-tertiary: #afafaf;
+
+  /* Gradientes */
+  --gradient-primary: linear-gradient(135deg, #0a84ff 0%, #0066cc 100%);
+  --gradient-accent: linear-gradient(135deg, #ff9f0a 0%, #ff8800 100%);
+  --gradient-card: linear-gradient(145deg, #ffffff 0%, #fafbfc 100%);
+  --gradient-subtle: linear-gradient(180deg, #fafafa 0%, #f5f5f7 100%);
+
+  /* Sombras em Camadas */
+  --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.03);
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.04);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.05), 0 2px 4px rgba(0, 0, 0, 0.03);
+  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.06), 0 4px 6px rgba(0, 0, 0, 0.04),
+    0 2px 4px rgba(0, 0, 0, 0.02);
+  --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.08), 0 8px 10px rgba(0, 0, 0, 0.05),
+    0 4px 6px rgba(0, 0, 0, 0.03);
+  --shadow-glow-primary: 0 0 20px rgba(10, 132, 255, 0.2);
+  --shadow-glow-accent: 0 0 20px rgba(255, 159, 10, 0.25);
+
+  /* Bordas */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
+  --radius-2xl: 24px;
+
+  /* Espaçamentos */
+  --spacing-xs: 8px;
+  --spacing-sm: 12px;
+  --spacing-md: 16px;
+  --spacing-lg: 20px;
+  --spacing-xl: 24px;
+  --spacing-2xl: 32px;
+
+  /* Transições */
+  --transition-fast: 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-base: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+/* ========================================
+   CARD DA ATIVIDADE
+   ======================================== */
+.atividade {
+  background: var(--gradient-card);
+  border-radius: var(--radius-xl);
+  margin-bottom: var(--spacing-lg);
+  box-shadow: var(--shadow-md);
+  overflow: hidden;
+  width: 100%;
+  max-width: 600px;
+  border: 1px solid var(--color-gray-200);
+  transition: all var(--transition-base);
+  animation: slideInCard 0.5s ease-out backwards;
+}
+
+@keyframes slideInCard {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.atividade:hover {
+  box-shadow: var(--shadow-xl);
+  transform: translateY(-4px);
+  border-color: var(--color-primary-light);
+}
+
+/* ========================================
+   CABEÇALHO DA ATIVIDADE
+   ======================================== */
 .atividade-header {
   display: flex;
   justify-content: space-between;
-  padding: 15px 20px;
+  align-items: center;
+  padding: var(--spacing-lg) var(--spacing-xl);
   font-size: 16px;
-  transition: background 0.2s;
-  font-weight: bold;
-  color: #0d1440;
-}
-
-.tarefaEnviada {
-  color: #afafaf;
-  text-decoration: line-through;
-}
-
-.atividade-detalhes {
-  padding: 20px;
-  border-top: 1px solid #eee;
+  font-weight: 600;
+  color: var(--color-text-primary);
   background: transparent;
-  overflow: hidden;
+  transition: all var(--transition-base);
+  position: relative;
+  letter-spacing: -0.2px;
+  cursor: pointer;
+}
+
+.atividade-header::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 4px;
+  height: 100%;
+  background: var(--gradient-primary);
+  opacity: 0;
+  transition: opacity var(--transition-base);
+}
+
+.atividade-header:hover {
+  background: linear-gradient(135deg, rgba(10, 132, 255, 0.03) 0%, rgba(10, 132, 255, 0.06) 100%);
+}
+
+.atividade-header:hover::before {
+  opacity: 1;
+}
+
+/* Ícone/Badge no header */
+.atividade-header .badge {
+  padding: 4px 12px;
+  background: var(--gradient-primary);
+  color: var(--color-white);
+  border-radius: var(--radius-sm);
+  font-size: 12px;
+  font-weight: 600;
+  box-shadow: var(--shadow-sm);
+  transition: all var(--transition-fast);
+}
+
+.atividade-header:hover .badge {
+  box-shadow: var(--shadow-md), var(--shadow-glow-primary);
+  transform: scale(1.05);
+}
+
+/* ========================================
+   TAREFA ENVIADA (Estado Completo)
+   ======================================== */
+.tarefaEnviada {
+  color: var(--color-text-tertiary);
+  text-decoration: line-through;
+  opacity: 0.7;
+  position: relative;
+}
+
+.tarefaEnviada::after {
+  content: '✓';
+  position: absolute;
+  right: -24px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--color-success);
+  font-size: 18px;
+  font-weight: bold;
+  animation: checkmarkPop 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+@keyframes checkmarkPop {
+  0% {
+    opacity: 0;
+    transform: translateY(-50%) scale(0);
+  }
+  50% {
+    transform: translateY(-50%) scale(1.2);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(-50%) scale(1);
+  }
+}
+
+/* ========================================
+   DETALHES DA ATIVIDADE
+   ======================================== */
+.atividade-detalhes {
+  padding: var(--spacing-xl);
+  border-top: 1px solid var(--color-gray-200);
+  background: var(--gradient-subtle);
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: var(--spacing-lg);
+  animation: expandDetails 0.4s ease-out;
 }
 
+@keyframes expandDetails {
+  from {
+    opacity: 0;
+    max-height: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+  to {
+    opacity: 1;
+    max-height: 1000px;
+    padding-top: var(--spacing-xl);
+    padding-bottom: var(--spacing-xl);
+  }
+}
+
+/* ========================================
+   INPUT DE RESPOSTA (Upload)
+   ======================================== */
 .div-input-resposta {
   position: relative;
-  border: 1px solid #0d1440;
-  border-radius: 10px;
+  border: 2px dashed var(--color-gray-300);
+  border-radius: var(--radius-lg);
+  display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
-  padding: 10px;
-  width: 50%;
-  font-size: 15px;
-  color: #0d1440;
-  transition: all 0.4s ease-in-out;
+  padding: var(--spacing-lg);
+  width: 100%;
+  font-size: 22px;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+  background: var(--color-white);
+  transition: all var(--transition-base);
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.div-input-resposta::before {
+  content: '📎';
+  font-size: 30px;
+  margin-right: var(--spacing-sm);
+  transition: transform var(--transition-base);
 }
 
 .div-input-resposta:hover {
-  padding: 15px;
-  width: 55%;
-  background-color: #0d1440;
-  color: #eee;
+  padding: var(--spacing-xl);
+  border-color: var(--color-primary);
+  background: var(--gradient-primary);
+  color: var(--color-white);
+  box-shadow: var(--shadow-lg), var(--shadow-glow-primary);
+  transform: scale(1.02);
 }
 
+.div-input-resposta:hover::before {
+  transform: rotate(-15deg) scale(1.1);
+}
+
+.div-input-resposta:active {
+  transform: scale(0.98);
+}
+
+/* Input file oculto */
 .input-resposta {
   cursor: pointer;
   position: absolute;
   opacity: 0;
   inset: 0;
+  z-index: 10;
 }
 
+/* ========================================
+   ARQUIVO ANEXADO
+   ======================================== */
 .div-arquivo-resposta {
   display: flex;
-  gap: 20px;
+  gap: var(--spacing-md);
   align-items: center;
+  padding: var(--spacing-md) var(--spacing-lg);
+  background: var(--color-white);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--color-gray-200);
+  transition: all var(--transition-base);
+  animation: fileAttached 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+@keyframes fileAttached {
+  0% {
+    opacity: 0;
+    transform: translateX(-20px) scale(0.9);
+  }
+  60% {
+    transform: translateX(5px) scale(1.05);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+}
+
+.div-arquivo-resposta:hover {
+  box-shadow: var(--shadow-md);
+  border-color: var(--color-primary-light);
+}
+
+.div-arquivo-resposta .file-name {
+  flex: 1;
+  font-size: 14px;
+  color: var(--color-text-primary);
+  font-weight: 500;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.div-arquivo-resposta svg {
   font-size: 20px;
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  flex-shrink: 0;
 }
 
 .div-arquivo-resposta svg:hover {
-  cursor: pointer;
-  font-size: 25px;
-  color: #ff0000;
-  transition: all 0.3s ease-in-out;
+  font-size: 24px;
+  color: var(--color-danger);
+  transform: rotate(90deg);
 }
 
+/* ========================================
+   BOTÃO ENTREGAR
+   ======================================== */
 .btn-entregar {
-  background: #ff9800;
-  border: 1px solid #ff9800;
-  color: white;
-  padding: 10px 15px;
-  border-radius: 8px;
+  background: var(--gradient-accent);
+  border: 2px solid transparent;
+  color: var(--color-white);
+  padding: var(--spacing-sm) var(--spacing-xl);
+  border-radius: var(--radius-lg);
   cursor: pointer;
-  font-weight: bold;
-  transition: all 0.3s ease-in-out;
+  font-weight: 600;
+  font-size: 15px;
+  letter-spacing: 0.3px;
+  transition: all var(--transition-base);
+  box-shadow: var(--shadow-md);
+  position: relative;
+  overflow: hidden;
+  align-self: flex-start;
+}
+
+.btn-entregar::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  transform: translate(-50%, -50%);
+  transition: width var(--transition-slow), height var(--transition-slow);
 }
 
 .btn-entregar:hover {
-  background-color: #fff;
-  color: #ff9800;
+  background: var(--color-white);
+  color: var(--color-accent);
+  border-color: var(--color-accent);
+  box-shadow: var(--shadow-xl), var(--shadow-glow-accent);
+  transform: translateY(-2px);
 }
 
+.btn-entregar:hover::before {
+  width: 300px;
+  height: 300px;
+}
+
+.btn-entregar:active {
+  transform: translateY(0) scale(0.98);
+  box-shadow: var(--shadow-md);
+}
+
+/* Estado desabilitado */
 .btn-entregar:disabled {
-  background: #ffc77d;
+  background: var(--color-gray-200);
+  color: var(--color-text-tertiary);
   cursor: not-allowed;
+  box-shadow: none;
+  border-color: transparent;
+  opacity: 0.6;
 }
 
+.btn-entregar:disabled:hover {
+  transform: none;
+  background: var(--color-gray-200);
+  color: var(--color-text-tertiary);
+}
+
+/* Animação de envio */
+.btn-entregar.sending {
+  pointer-events: none;
+  position: relative;
+  color: transparent;
+}
+
+.btn-entregar.sending::after {
+  content: '';
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  top: 50%;
+  left: 50%;
+  margin-left: -8px;
+  margin-top: -8px;
+  border: 2px solid var(--color-white);
+  border-top-color: transparent;
+  border-radius: 50%;
+  animation: buttonSpinner 0.8s linear infinite;
+}
+
+@keyframes buttonSpinner {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ========================================
+   TAREFA ENVIADA (Confirmação)
+   ======================================== */
 .tarefa-enviada {
-  padding: 15px 20px;
+  padding: var(--spacing-lg) var(--spacing-xl);
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: var(--spacing-sm);
+  background: linear-gradient(135deg, rgba(52, 199, 89, 0.08) 0%, rgba(52, 199, 89, 0.12) 100%);
+  border-top: 1px solid rgba(52, 199, 89, 0.2);
+  animation: successPulse 0.6s ease-out;
+}
+
+@keyframes successPulse {
+  0% {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  50% {
+    transform: scale(1.02);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.tarefa-enviada .status {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  color: var(--color-success);
+  font-weight: 600;
+  font-size: 15px;
+}
+
+.tarefa-enviada .status::before {
+  content: '✓';
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  background: var(--color-success);
+  color: var(--color-white);
+  border-radius: 50%;
+  font-size: 14px;
+  font-weight: bold;
+  box-shadow: 0 2px 8px rgba(52, 199, 89, 0.3);
+}
+
+.tarefa-enviada .data {
+  color: var(--color-text-secondary);
+  font-size: 13px;
+  margin-left: 36px;
+}
+
+/* ========================================
+   RESPONSIVIDADE
+   ======================================== */
+@media (max-width: 768px) {
+  .atividade {
+    max-width: 100%;
+    margin-bottom: var(--spacing-md);
+  }
+
+  .atividade-header {
+    padding: var(--spacing-md) var(--spacing-lg);
+    font-size: 15px;
+  }
+
+  .atividade-detalhes {
+    padding: var(--spacing-lg);
+    gap: var(--spacing-md);
+  }
+
+  .div-input-resposta {
+    width: 100%;
+    font-size: 14px;
+  }
+
+  .div-input-resposta:hover {
+    width: 100%;
+  }
+
+  .btn-entregar {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .tarefa-enviada {
+    padding: var(--spacing-md) var(--spacing-lg);
+  }
+}
+
+@media (max-width: 480px) {
+  .atividade-header {
+    padding: var(--spacing-sm) var(--spacing-md);
+    font-size: 14px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--spacing-xs);
+  }
+
+  .atividade-detalhes {
+    padding: var(--spacing-md);
+  }
+
+  .div-arquivo-resposta {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--spacing-sm);
+  }
+
+  .div-arquivo-resposta .file-name {
+    width: 100%;
+  }
+}
+
+/* ========================================
+   ACESSIBILIDADE
+   ======================================== */
+.div-input-resposta:focus-within {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+.btn-entregar:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 4px;
+}
+
+/* Redução de movimento */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }

@@ -1,6 +1,6 @@
 import '../SideBar/SideBar.css'
 import { FaBook, FaUser } from 'react-icons/fa'
-import { IoBookOutline } from 'react-icons/io5'
+import { FaRobot } from 'react-icons/fa6'
 import LiSideBar from '../SideBar/LiSideBar'
 import { useContext } from 'react'
 import { UserContext } from '../../context/UserContext'
@@ -15,6 +15,12 @@ function Sidebar() {
       url: '/professor/turmas',
       text: 'Turmas',
       icon: <FaBook />,
+    },
+    {
+      id: 2,
+      url: '/professor/ia',
+      text: 'Inteligencia Artificial',
+      icon: <FaRobot />,
     },
   ]
 

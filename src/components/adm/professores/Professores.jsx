@@ -52,7 +52,11 @@ export default function professores() {
             <div className='grid-professores'>
               {professoresFiltrados.length !== 0 ? (
                 professoresFiltrados.map((professor) => (
-                  <CardProfessor key={professor.id} {...professor} />
+                  <CardProfessor
+                    key={professor.id}
+                    onClick={navigateEditProfessores}
+                    {...professor}
+                  />
                 ))
               ) : (
                 <p>Procure por um professor</p>
