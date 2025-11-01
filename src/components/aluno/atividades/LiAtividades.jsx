@@ -6,7 +6,7 @@ import { apiPost } from '../../../api'
 import { MdOutlineFileUpload } from 'react-icons/md'
 import { FaTrashAlt } from 'react-icons/fa'
 
-export default function LiAtividades({ atividades }) {
+export default function LiAtividades({ atividades, functionEnviar }) {
   const { currentUser } = useContext(UserContext)
   const [atividadesAbertas, setAtividadesAbertas] = useState([])
   function toggleAtividade(id) {
@@ -17,7 +17,7 @@ export default function LiAtividades({ atividades }) {
     }
   }
 
-  function entregarAtividade(arquivo, id, idUsuario) {
+  async function entregarAtividade(arquivo, id, idUsuario) {
     const formData = new FormData()
     formData.append('file', arquivo) // nome "file" deve coincidir com o esperado no backend
     formData.append('aluno_id', idUsuario)
@@ -26,6 +26,7 @@ export default function LiAtividades({ atividades }) {
     apiPost('/api/submissoes/upload', formData)
       .then((data) => alert(data.message))
       .catch((error) => console.log(error))
+    functionEnviar(id)
   }
   const [arquivo, setArquivo] = useState(null)
 

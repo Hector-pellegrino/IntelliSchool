@@ -31,6 +31,20 @@ function Atividades() {
     setViewAtividades([...atividades])
   }
 
+  function marcarComoEnviada(idAtividade) {
+    setViewAtividades((prev) =>
+      prev.map((atividade) =>
+        atividade.tarefa_id === idAtividade
+          ? {
+              ...atividade,
+              enviada: true,
+              data_envio: new Date().toISOString(),
+            }
+          : atividade
+      )
+    )
+  }
+
   return (
     <div className='atividades-page'>
       <h2>📚 Minhas Atividades</h2>
@@ -41,7 +55,7 @@ function Atividades() {
       </div>
 
       <ul className='atividades-lista'>
-        <LiAtividades atividades={viewAtividades} />
+        <LiAtividades atividades={viewAtividades} functionEnviar={marcarComoEnviada} />
       </ul>
     </div>
   )
