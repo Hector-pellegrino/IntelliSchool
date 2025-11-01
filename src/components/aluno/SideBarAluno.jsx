@@ -1,5 +1,6 @@
 import './SideBarAluno.css'
-import { FaBook, FaChartBar, FaUserGraduate, FaFileAlt, FaUser, FaTasks } from 'react-icons/fa'
+import { FaFileAlt, FaUser, FaTasks } from 'react-icons/fa'
+import { FaRobot } from 'react-icons/fa6'
 import LiSideBar from '../SideBar/LiSideBar'
 import { useContext } from 'react'
 import { UserContext } from '../../context/UserContext'
@@ -24,7 +25,7 @@ function Sidebar() {
     {
       id: 3,
       url: '/aluno/ia',
-      text: 'Inteligencia Artificial',
+      text: 'IntelliSchool - IA',
       icon: <FaRobot />,
     },
   ]

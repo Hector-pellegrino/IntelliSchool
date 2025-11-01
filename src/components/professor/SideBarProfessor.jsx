@@ -19,7 +19,7 @@ function Sidebar() {
     {
       id: 2,
       url: '/professor/ia',
-      text: 'Inteligencia Artificial',
+      text: 'IntelliSchool - IA',
       icon: <FaRobot />,
     },
   ]
