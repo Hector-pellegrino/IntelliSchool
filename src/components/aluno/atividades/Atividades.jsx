@@ -16,7 +16,10 @@ function Atividades() {
         const dataFiltrado = await data.filter((data) => data.visivel === true)
         setAtividades(dataFiltrado)
         setViewAtividades(dataFiltrado)
-      } catch (error) {}
+      } catch (error) {
+        let msg = JSON.parse(error?.message)
+        alert(msg.detail)
+      }
     }
     fetchAtividades()
   }, [])

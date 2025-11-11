@@ -19,16 +19,19 @@ export default function Login() {
   async function buttonSubmit(evento) {
     evento.preventDefault()
     setIsLoading(true)
-    const data = await apiPost('/api/auth/login', login)
-    if (data.message === 'Login realizado com sucesso') {
+    try {
+      const data = await apiPost('/api/auth/login', login)
       setCurrentUser(data.user)
       setCurrentMessage(data.message)
       sessionStorage.setItem('user', JSON.stringify(data.user))
-      sessionStorage.setItem('message', JSON.stringify(data.message)) 
+      sessionStorage.setItem('message', JSON.stringify(data.message))
       navigate('/home')
-    } else {
+    } catch (error) {
+      let msg = JSON.parse(error?.message)
+      alert(msg.detail)
       setIsLoading(false)
-      alert(`${data.detail}`)
+    } finally {
+      setIsLoading(false)
     }
   }
 
@@ -58,8 +61,7 @@ export default function Login() {
             label='senha:'
             handleOnChange={handleChange}
           />
-          {isLoading ? <Loading/> : <button id='buttonLogin'>Entrar</button>}
-          
+          {isLoading ? <Loading /> : <button id='buttonLogin'>Entrar</button>}
         </form>
       </section>
     </section>

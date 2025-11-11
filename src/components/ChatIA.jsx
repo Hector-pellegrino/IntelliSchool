@@ -35,14 +35,11 @@ export default function ChatIA() {
     setSending(true)
 
     try {
-      // Chama seu apiPost que já usa API_URL + Basic Auth etc
-      // Endpoint '/chat' (fica API_URL + '/chat' conforme seu api.js)
       const data = await apiPost('/api/chat', {
         user_id: currentUser.id,
         message: text,
       })
 
-      // Pode retornar string ou JSON { resposta: "..." }
       let resposta
       if (typeof data === 'string') {
         resposta = data
@@ -56,7 +53,7 @@ export default function ChatIA() {
       const botMsg = { id: Date.now() + '-b', role: 'bot', text: resposta }
       setMessages((prev) => [...prev, botMsg])
     } catch (err) {
-      console.error('Erro no chat:', err)
+      alert('Erro no chat:', err)
       const messageText = err?.message ?? 'Erro ao conectar com o servidor.'
       setMessages((prev) => [
         ...prev,

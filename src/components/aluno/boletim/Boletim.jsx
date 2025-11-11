@@ -33,7 +33,8 @@ export default function Boletim() {
       a.remove()
       window.URL.revokeObjectURL(url)
     } catch (error) {
-      console.error('Erro ao gerar PDF:', error)
+      let msg = JSON.parse(error?.message)
+      alert(msg.detail)
     } finally {
       setIsLoading(false)
     }
