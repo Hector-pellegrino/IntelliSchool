@@ -6,14 +6,14 @@ import './DisciplinasTurma.css'
 import { apiGet } from '../../../api'
 import Loading from '../../Loading'
 
-export default function AtividadesTurma({ atribuicoes, serie }) {
+export default function DisciplinasTurma({ atribuicoes, serie }) {
   const navigate = useNavigate()
   const { idTurma } = useParams()
   const [currentTurma, setCurrentTurma] = useState('')
   const atribuicoesDessaTurma = atribuicoes.filter((atribuicao) => atribuicao.turma_id == idTurma)
 
   useEffect(() => {
-    apiGet(`/api/turmas/18`).then(({ serie }) => setCurrentTurma(serie))
+    apiGet(`/api/turmas/${idTurma}`).then(({ serie }) => setCurrentTurma(serie))
   })
 
   function navigateTurmas() {
