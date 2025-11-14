@@ -32,14 +32,25 @@ export default function CreateProfessor() {
     ) {
       return alert('Por favor, preencha todos os campos')
     }
-    await apiPost('/api/usuarios', { ...professorCreation })
-      .then((data) => {
-        alert(data.message)
-      })
-      .catch((error) => {
-        console.error('Error:', error)
-      })
-    navigateProfessor()
+    try {
+      const data = await apiPost('/api/usuarios', { ...professorCreation })
+      alert(data.message)
+      navigateProfessor()
+    } catch (error) {
+      let message = 'Erro desconhecido'
+      try {
+        const parsed = JSON.parse(error.message)
+        if (Array.isArray(parsed.detail)) {
+          message = parsed.detail[0].msg
+        } else if (parsed.detail) {
+          message = parsed.detail
+        }
+      } catch {
+        message = error.message || String(error)
+      }
+
+      alert(message)
+    }    
   }
   return (
     <section className='section-create-professor'>
