@@ -54,7 +54,6 @@ export default function professores() {
                 professoresFiltrados.map((professor) => (
                   <CardProfessor
                     key={professor.id}
-                    onClick={navigateEditProfessores}
                     {...professor}
                   />
                 ))
