@@ -52,7 +52,7 @@ export default function LiAtividades({ atividades, functionEnviar }) {
                 <p>Comentario: {avaliacao?.comentario_geral}</p>
               </div>
             ) : (
-              <div className='atividade-detalhes' id={`atividade-${tarefa_id}`}>
+              <div className='atividade-detalhes' id={`atividade-detalhes-${tarefa_id}`}>
                 <p className='descricao'>
                   <strong>Descrição:</strong> {descricao}
                 </p>
